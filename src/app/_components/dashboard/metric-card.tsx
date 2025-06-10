@@ -1,6 +1,6 @@
 "use client";
 
-import { Car, Zap, Gauge, icons, Star } from "lucide-react";
+import { Car, Zap, Gauge, Star } from "lucide-react";
 
 interface MetricCardProps {
   title: string;

@@ -15,7 +15,7 @@ import { SignOutButton } from "@clerk/nextjs";
 import { useUser } from "@clerk/nextjs";
 
 export default function Navbar() {
-  const { isSignedIn, user } = useUser();
+  const { user } = useUser();
 
   return (
     <header className="animate-fade-in bg-bg2 flex items-center justify-between border-b-1 px-6 py-4">

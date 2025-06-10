@@ -18,8 +18,68 @@ import AddGoalForm from "./add-goal-form";
 import AddServiceLogForm from "./add-service-log-form";
 import ViewCarsDisplay from "./view-cars";
 import QuickActionButtons from "./quick-action-button";
+import { type ReactNode } from "react";
 
-const quickActions = [
+type DreamCarData = {
+  make: string;
+  model: string;
+  year: number;
+  hp: number;
+  color?: string;
+  description?: string;
+  engineType?: string;
+  transmissionType?: string;
+};
+
+type ProjectData = {
+  name: string;
+  carMake: string;
+  carModel: string;
+  projectType: string;
+  budget: number;
+  description: string;
+  priority: string;
+};
+
+type RoadTripData = {
+  name: string;
+  startLocation: string;
+  endLocation: string;
+  startDate: string;
+  endDate: string;
+  distance: number;
+  carUsed: string;
+  description: string;
+};
+
+type GoalData = {
+  title: string;
+  category: string;
+  targetDate: string;
+  priority: string;
+  description: string;
+  targetValue?: string;
+};
+
+type ServiceLogData = {
+  carId: string;
+  serviceType: string;
+  description: string;
+  cost: number;
+  mileage: number;
+  serviceDate: string;
+  serviceProvider: string;
+  nextServiceDue?: string;
+};
+
+type QuickAction = {
+  title: string;
+  description: string;
+  icon: ReactNode;
+  color: string;
+};
+
+const quickActions: QuickAction[] = [
   {
     title: "Add Dream Car",
     description: "Add to wishlist",
@@ -59,28 +119,28 @@ const quickActions = [
 ];
 
 const QuickActions = () => {
-  const handleDreamCarSubmit = (data: any) => {
+  const handleDreamCarSubmit = (data: DreamCarData) => {
     console.log("Dream car data:", data);
     // Here you would typically save to your database
   };
 
-  const handleProjectSubmit = (data: any) => {
+  const handleProjectSubmit = (data: ProjectData) => {
     console.log("Project data:", data);
   };
 
-  const handleRoadTripSubmit = (data: any) => {
+  const handleRoadTripSubmit = (data: RoadTripData) => {
     console.log("Road trip data:", data);
   };
 
-  const handleGoalSubmit = (data: any) => {
+  const handleGoalSubmit = (data: GoalData) => {
     console.log("Goal data:", data);
   };
 
-  const handleServiceLogSubmit = (data: any) => {
+  const handleServiceLogSubmit = (data: ServiceLogData) => {
     console.log("Service log data:", data);
   };
 
-  const renderDialogContent = (action: any) => {
+  const renderDialogContent = (action: QuickAction) => {
     switch (action.title) {
       case "Add Dream Car":
         return (
