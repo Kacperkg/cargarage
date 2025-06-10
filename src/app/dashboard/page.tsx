@@ -7,9 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
@@ -20,7 +18,7 @@ export default function DashboardPage() {
   return (
     <div className="flex h-screen w-full flex-col">
       <Navbar />
-      <div className="mx-4 max-w-7xl md:m-auto">
+      <div className="w-full px-2 sm:px-4 md:m-auto lg:px-32">
         <MetricCardRow />
         <div className="mt-10 flex flex-col justify-between gap-4 xl:flex-row">
           <FeaturedCards />
@@ -47,7 +45,7 @@ const FeaturedCards = () => {
               <TableHead className="w-[100px]">Make</TableHead>
               <TableHead>Model</TableHead>
               <TableHead>Year</TableHead>
-              <TableHead>HP</TableHead>
+              <TableHead className="hidden md:table-cell">HP</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -56,7 +54,7 @@ const FeaturedCards = () => {
                 <TableCell className="font-medium">{car.make}</TableCell>
                 <TableCell>{car.model}</TableCell>
                 <TableCell>{car.year}</TableCell>
-                <TableCell>{car.hp}</TableCell>
+                <TableCell className="hidden md:table-cell">{car.hp}</TableCell>
               </TableRow>
             ))}
           </TableBody>

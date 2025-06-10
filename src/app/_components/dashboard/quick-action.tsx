@@ -276,29 +276,27 @@ const QuickActions = () => {
   };
 
   return (
-    <Card className="animate-fade-in bg-bg2">
+    <Card className="animate-fade-in bg-bg2 w-full xl:w-1/2">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Plus className="text-primary h-5 w-5" />
           <h1 className="text-2xl text-white">Quick Actions</h1>
         </CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="grid gap-3 sm:grid-cols-3 xl:grid-cols-2">
-          {quickActions.map((action, index) => (
-            <AlertDialog key={index}>
-              <AlertDialogTrigger asChild>
-                <QuickActionButtons
-                  title={action.title}
-                  desc={action.description}
-                  icon={action.icon}
-                  color={action.color}
-                />
-              </AlertDialogTrigger>
-              {renderDialogContent(action)}
-            </AlertDialog>
-          ))}
-        </div>
+      <CardContent className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-2">
+        {quickActions.map((action, index) => (
+          <AlertDialog key={index}>
+            <AlertDialogTrigger asChild>
+              <QuickActionButtons
+                title={action.title}
+                desc={action.description}
+                icon={action.icon}
+                color={action.color}
+              />
+            </AlertDialogTrigger>
+            {renderDialogContent(action)}
+          </AlertDialog>
+        ))}
       </CardContent>
     </Card>
   );
