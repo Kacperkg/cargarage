@@ -6,15 +6,139 @@ generator client {
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+    provider  = "postgresql"
+    url       = env("DATABASE_URL")
+    directUrl = env("DIRECT_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
+model User {
+    id          String       @id @default(cuid())
+    email       String       @unique
+    name        String?
+    projectCars ProjectCar[]
+    dreamCars   DreamCar[]
+    myCars      MyCar[]
+}
+
+model DreamCar {
+    id               Int               @id @default(autoincrement())
+    make             String
+    model            String
+    year             Int
+    hp               Int
+    color            String?
+    description      String?
+    engineType       EngineType?
+    transmissionType TransmissionType?
+
+    ownerId String
+    owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    @@index([name])
+    @@map("dream_cars")
+}
+
+model MyCar {
+    vin              String           @id @unique
+    make             String
+    model            String
+    year             Int
+    mileage          Int
+    hp               Int
+    color            String?
+    description      String?
+    engineType       EngineType
+    transmissionType TransmissionType
+    purchaseDate     DateTime
+
+    ownerId String
+    owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("my_cars")
+}
+
+model ProjectCar {
+    id             String        @id @default(cuid())
+    name           String
+    make           String
+    model          String
+    year           Int
+    vin            String?       @unique
+    status         ProjectStatus @default(PLANNED)
+    description    String?
+    startDate      DateTime      @default(now())
+    completionDate DateTime?
+    budget         Float?
+    createdAt      DateTime      @default(now())
+    updatedAt      DateTime      @updatedAt
+    priority       Priority
+    projectType    ProjectType
+
+    ownerId String
+    owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+    modifications Modification[]
+}
+
+model Modification {
+    id           String     @id @default(cuid())
+    projectCar   ProjectCar @relation(fields: [projectCarId], references: [id], onDelete: Cascade)
+    projectCarId String
+    name         String
+    description  String?
+    cost         Float?
+    date         DateTime   @default(now())
+    createdAt    DateTime   @default(now())
+}
+
+enum ProjectStatus {
+    PLANNED
+    IN_PROGRESS
+    COMPLETED
+    ON_HOLD
+    CANCELLED
+}
+
+enum EngineType {
+    GASOLINE
+    DIESEL
+    ELECTRIC
+    HYBRID
+    V4
+    V6
+    V8
+    V10
+    V12
+    I4
+    I6
+    ROTARY
+}
+
+enum TransmissionType {
+    MANUAL
+    AUTOMATIC
+    SEMI_AUTOMATIC
+    CVT
+    DCT
+}
+
+enum ProjectType {
+    Performance
+    Aesthetics
+    Restoration
+    Maintenance
+    AudioSystem
+    Suspension
+}
+
+enum Priority {
+    Low
+    Medium
+    High
+    Urgent
 }

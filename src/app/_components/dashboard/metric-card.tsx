@@ -10,7 +10,7 @@ interface MetricCardProps {
 
 const MetricCard = ({ title, value, icon }: MetricCardProps) => {
   return (
-    <div className="bg-bg2 col-span-1 mt-5 flex aspect-video items-center justify-center rounded-lg border p-4 xl:mt-0">
+    <div className="bg-bg2 col-span-1 mt-5 flex aspect-video items-center justify-center rounded-lg border p-4 transition-all duration-200 hover:scale-102 xl:mt-0">
       <div className="flex flex-col items-start justify-start">
         <div className="flex flex-row items-center gap-4">
           <h1 className="text-xl text-white/70">{title}</h1>
