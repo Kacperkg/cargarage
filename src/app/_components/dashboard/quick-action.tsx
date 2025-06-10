@@ -276,14 +276,14 @@ const QuickActions = () => {
   };
 
   return (
-    <Card className="animate-fade-in bg-bg2 w-full xl:w-1/2">
+    <Card className="animate-fade-in bg-bg2">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Plus className="text-primary h-5 w-5" />
           <h1 className="text-2xl text-white">Quick Actions</h1>
         </CardTitle>
       </CardHeader>
-      <CardContent className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-2">
+      <CardContent className="grid grid-cols-3 gap-3 md:grid-cols-6 xl:grid-cols-2">
         {quickActions.map((action, index) => (
           <AlertDialog key={index}>
             <AlertDialogTrigger asChild>
