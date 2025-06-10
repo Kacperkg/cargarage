@@ -1,6 +1,7 @@
 "use client";
 
 import { Car, Zap, Gauge, Star } from "lucide-react";
+import { Card, CardHeader, CardTitle } from "~/components/ui/card";
 
 interface MetricCardProps {
   title: string;
@@ -10,15 +11,15 @@ interface MetricCardProps {
 
 const MetricCard = ({ title, value, icon }: MetricCardProps) => {
   return (
-    <div className="bg-bg2 col-span-1 mt-5 flex aspect-video items-center justify-center rounded-lg border p-4 transition-all duration-200 hover:scale-102 xl:mt-0">
-      <div className="flex flex-col items-start justify-start">
-        <div className="flex flex-row items-center gap-4">
-          <h1 className="text-xl text-white/70">{title}</h1>
-          {icon}
-        </div>
-        <h2 className="mt-4 text-2xl">{value}</h2>
-      </div>
-    </div>
+    <Card className="animate-fade-in bg-bg2 flex aspect-video flex-col items-start justify-center">
+      <CardHeader className="w-full items-center justify-center gap-4">
+        <CardTitle className="flex flex-row items-center gap-4 text-xl text-white/70">
+          <h1 className="text-nowrap">{title}</h1>
+          <h1>{icon}</h1>
+        </CardTitle>
+        <h1 className="text-2xl">{value}</h1>
+      </CardHeader>
+    </Card>
   );
 };
 
@@ -36,7 +37,7 @@ const MetricCardRow = () => {
         icon={<Gauge className="h-6 w-6 text-yellow-400" />}
       />
       <MetricCard
-        title="Total Horsepower"
+        title="Total HP"
         value="189"
         icon={<Zap className="h-6 w-6 text-green-400" />}
       />

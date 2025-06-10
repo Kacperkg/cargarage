@@ -280,11 +280,11 @@ const QuickActions = () => {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Plus className="text-primary h-5 w-5" />
-          Quick Actions
+          <h1 className="text-2xl text-white">Quick Actions</h1>
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid gap-3 sm:grid-cols-3 xl:grid-cols-2">
           {quickActions.map((action, index) => (
             <AlertDialog key={index}>
               <AlertDialogTrigger asChild>
