@@ -6,10 +6,9 @@
  * TL;DR - This is where all the tRPC server stuff is created and plugged in. The pieces you will
  * need to use are documented accordingly near the end.
  */
-import { initTRPC, TRPCError } from "@trpc/server";
+import { initTRPC } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
-import { auth, currentUser } from "@clerk/nextjs/server";
 
 import { db } from "~/server/db";
 
@@ -26,13 +25,8 @@ import { db } from "~/server/db";
  * @see https://trpc.io/docs/server/context
  */
 export const createTRPCContext = async (opts: { headers: Headers }) => {
-  const authSession = auth(); // Clerk's server-side auth helper
-  const user = await currentUser(); // Clerk's server-side user object helper
-
   return {
-    db, // Your Prisma client instance
-    auth: authSession, // Pass Clerk's auth data
-    user: user, // Pass Clerk's full user object (optional, but often useful)
+    db,
     ...opts,
   };
 };
@@ -110,26 +104,3 @@ const timingMiddleware = t.middleware(async ({ next, path }) => {
  * are logged in.
  */
 export const publicProcedure = t.procedure.use(timingMiddleware);
-
-export const protectedProcedure = t.procedure
-  .use(timingMiddleware)
-  .use(async ({ ctx, next }) => {
-    const auth = await ctx.auth;
-    // Check if Clerk's userId is present (meaning the user is authenticated)
-    if (!auth.userId) {
-      throw new TRPCError({
-        code: "UNAUTHORIZED",
-        message: "Not authenticated",
-      });
-    }
-
-    // If authenticated, proceed and ensure userId is available downstream
-    return next({
-      ctx: {
-        // Ensure userId is non-nullable for procedures using protectedProcedure
-        // We also pass the full user object if you need more user details downstream
-        auth: { ...auth, userId: auth.userId },
-        user: ctx.user, // Pass the full user object
-      },
-    });
-  });
