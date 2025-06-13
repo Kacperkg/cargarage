@@ -12,7 +12,7 @@ import {
 import type { ProjectData } from "~/utils/types";
 import { api } from "~/trpc/react";
 import { toast } from "sonner";
-import { ProjectType, Priority } from "@prisma/client";
+import type { ProjectType, Priority } from "@prisma/client";
 
 const AddProjectForm = () => {
   const [formData, setFormData] = useState<ProjectData>({

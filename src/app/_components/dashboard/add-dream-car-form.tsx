@@ -11,7 +11,7 @@ import {
 } from "~/components/ui/select";
 import { toast } from "sonner";
 import type { DreamCarFormData } from "~/utils/types";
-import { EngineType, TransmissionType } from "@prisma/client";
+import type { EngineType, TransmissionType } from "@prisma/client";
 import { api } from "~/trpc/react";
 
 const AddDreamCarForm = () => {
