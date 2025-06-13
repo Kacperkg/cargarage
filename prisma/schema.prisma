@@ -52,7 +52,7 @@ model MyCar {
     description      String?
     engineType       EngineType
     transmissionType TransmissionType
-    purchaseDate     DateTime
+    purchaseDate     DateTime?
 
     ownerId String
     owner   User   @relation(fields: [ownerId], references: [clerkId], onDelete: Cascade)

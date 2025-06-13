@@ -70,12 +70,12 @@ export interface MyCar {
   make: string;
   model: string;
   year: number;
-  mileage: number | null;
-  hp: number | null;
+  mileage: number;
+  hp: number;
   color: string | null;
   description: string | null;
-  engineType: EngineType | null;
-  transmissionType: TransmissionType | null;
+  engineType: EngineType;
+  transmissionType: TransmissionType;
   purchaseDate: Date | null;
   ownerId: string;
   createdAt: Date;

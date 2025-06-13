@@ -46,8 +46,8 @@ const AddDreamCarForm = () => {
     try {
       createDreamCar.mutate({
         ...formData,
-        color: formData.color || "",
-        description: formData.description || "",
+        color: formData.color ?? "",
+        description: formData.description ?? "",
         engineType: formData.engineType as EngineType,
         transmissionType: formData.transmissionType as TransmissionType,
       });
@@ -113,7 +113,7 @@ const AddDreamCarForm = () => {
         <Label htmlFor="color">Color</Label>
         <Input
           id="color"
-          value={formData.color || ""}
+          value={formData.color ?? ""}
           onChange={(e) => handleChange("color", e.target.value)}
           placeholder="e.g., Rosso Corsa"
         />
@@ -164,7 +164,7 @@ const AddDreamCarForm = () => {
         <Label htmlFor="description">Description</Label>
         <Textarea
           id="description"
-          value={formData.description || ""}
+          value={formData.description ?? ""}
           onChange={(e) => handleChange("description", e.target.value)}
           placeholder="Tell us why this is your dream car..."
           rows={3}
