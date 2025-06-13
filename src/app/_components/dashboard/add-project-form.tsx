@@ -42,8 +42,8 @@ const AddProjectForm = () => {
     createProjectCar.mutate(
       {
         ...formData,
-        projectType: formData.projectType as ProjectType,
-        priority: formData.priority as Priority,
+        projectType: formData.projectType,
+        priority: formData.priority,
         make: formData.carMake,
         model: formData.carModel,
         year: new Date().getFullYear(),

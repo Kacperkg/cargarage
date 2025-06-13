@@ -45,8 +45,8 @@ const AddDreamCarForm = () => {
         ...formData,
         color: formData.color ?? "",
         description: formData.description ?? "",
-        engineType: formData.engineType as EngineType,
-        transmissionType: formData.transmissionType as TransmissionType,
+        engineType: formData.engineType,
+        transmissionType: formData.transmissionType,
       },
       {
         onSuccess: () => {
