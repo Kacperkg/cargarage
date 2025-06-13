@@ -25,7 +25,7 @@ interface ServiceLogData {
   nextServiceDue?: string;
 }
 
-const AddServiceLogForm = ({ onSubmit }: AddServiceLogFormProps) => {
+const AddServiceLogForm = () => {
   const [formData, setFormData] = useState<ServiceLogData>({
     carId: "",
     serviceType: "",
@@ -39,7 +39,6 @@ const AddServiceLogForm = ({ onSubmit }: AddServiceLogFormProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(formData);
   };
 
   const handleChange = (
@@ -53,7 +52,7 @@ const AddServiceLogForm = ({ onSubmit }: AddServiceLogFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form id="service-log-form" onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="carId">Car *</Label>

@@ -23,7 +23,7 @@ interface GoalData {
   targetValue?: string;
 }
 
-const AddGoalForm = ({ onSubmit }: AddGoalFormProps) => {
+const AddGoalForm = () => {
   const [formData, setFormData] = useState<GoalData>({
     title: "",
     category: "",
@@ -35,7 +35,6 @@ const AddGoalForm = ({ onSubmit }: AddGoalFormProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(formData);
   };
 
   const handleChange = (field: keyof GoalData, value: string) => {
@@ -46,7 +45,7 @@ const AddGoalForm = ({ onSubmit }: AddGoalFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form id="goal-form" onSubmit={handleSubmit} className="space-y-4">
       <div className="space-y-2">
         <Label htmlFor="title">Goal Title *</Label>
         <Input

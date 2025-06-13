@@ -9,48 +9,56 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
+import { toast } from "sonner";
+import type {
+  DreamCarFormData,
+  EngineType,
+  TransmissionType,
+} from "~/utils/types";
+import { api } from "~/trpc/react";
 
-interface AddDreamCarFormProps {
-  onSubmit: (data: DreamCarData) => void;
-}
-
-interface DreamCarData {
-  make: string;
-  model: string;
-  year: number;
-  hp: number;
-  color?: string;
-  description?: string;
-  engineType?: string;
-  transmissionType?: string;
-}
-
-const AddDreamCarForm = ({ onSubmit }: AddDreamCarFormProps) => {
-  const [formData, setFormData] = useState<DreamCarData>({
+const AddDreamCarForm = () => {
+  const [formData, setFormData] = useState<DreamCarFormData>({
     make: "",
     model: "",
     year: new Date().getFullYear(),
     hp: 0,
     color: "",
     description: "",
-    engineType: "",
-    transmissionType: "",
+    engineType: "V8" as EngineType,
+    transmissionType: "MANUAL" as TransmissionType,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSubmit(formData);
-  };
-
-  const handleChange = (field: keyof DreamCarData, value: string | number) => {
+  const handleChange = (
+    field: keyof DreamCarFormData,
+    value: string | number | null,
+  ) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
     }));
   };
 
+  const createDreamCar = api.createDreamCar.createDreamCar.useMutation();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      createDreamCar.mutate({
+        ...formData,
+        color: formData.color || "",
+        description: formData.description || "",
+        engineType: formData.engineType as EngineType,
+        transmissionType: formData.transmissionType as TransmissionType,
+      });
+      toast.success("Dream car added successfully!");
+    } catch (error) {
+      toast.error("Failed to add dream car. Please try again.");
+    }
+  };
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form id="dream-car-form" onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="make">Make *</Label>
@@ -105,7 +113,7 @@ const AddDreamCarForm = ({ onSubmit }: AddDreamCarFormProps) => {
         <Label htmlFor="color">Color</Label>
         <Input
           id="color"
-          value={formData.color}
+          value={formData.color || ""}
           onChange={(e) => handleChange("color", e.target.value)}
           placeholder="e.g., Rosso Corsa"
         />
@@ -129,6 +137,7 @@ const AddDreamCarForm = ({ onSubmit }: AddDreamCarFormProps) => {
               <SelectItem value="ELECTRIC">Electric</SelectItem>
               <SelectItem value="HYBRID">Hybrid</SelectItem>
               <SelectItem value="ROTARY">Rotary</SelectItem>
+              <SelectItem value="DIESEL">Diesel</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -144,7 +153,7 @@ const AddDreamCarForm = ({ onSubmit }: AddDreamCarFormProps) => {
               <SelectItem value="MANUAL">Manual</SelectItem>
               <SelectItem value="AUTOMATIC">Automatic</SelectItem>
               <SelectItem value="CVT">CVT</SelectItem>
-              <SelectItem value="DCT">Dual Clutch</SelectItem>
+              <SelectItem value="DCT">DCT</SelectItem>
               <SelectItem value="SEMI_AUTO">Semi-Automatic</SelectItem>
             </SelectContent>
           </Select>
@@ -155,7 +164,7 @@ const AddDreamCarForm = ({ onSubmit }: AddDreamCarFormProps) => {
         <Label htmlFor="description">Description</Label>
         <Textarea
           id="description"
-          value={formData.description}
+          value={formData.description || ""}
           onChange={(e) => handleChange("description", e.target.value)}
           placeholder="Tell us why this is your dream car..."
           rows={3}

@@ -13,6 +13,7 @@ datasource db {
 
 model User {
     id          String       @id @default(cuid())
+    clerkId     String       @unique
     email       String       @unique
     name        String?
     projectCars ProjectCar[]
@@ -21,18 +22,18 @@ model User {
 }
 
 model DreamCar {
-    id               Int               @id @default(autoincrement())
+    id               Int              @id @default(autoincrement())
     make             String
     model            String
     year             Int
     hp               Int
     color            String?
     description      String?
-    engineType       EngineType?
-    transmissionType TransmissionType?
+    engineType       EngineType
+    transmissionType TransmissionType
 
     ownerId String
-    owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+    owner   User   @relation(fields: [ownerId], references: [clerkId], onDelete: Cascade)
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -54,7 +55,7 @@ model MyCar {
     purchaseDate     DateTime
 
     ownerId String
-    owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+    owner   User   @relation(fields: [ownerId], references: [clerkId], onDelete: Cascade)
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -80,7 +81,7 @@ model ProjectCar {
     projectType    ProjectType
 
     ownerId String
-    owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+    owner   User   @relation(fields: [ownerId], references: [clerkId], onDelete: Cascade)
 
     modifications Modification[]
 }
@@ -106,9 +107,10 @@ enum ProjectStatus {
 
 enum EngineType {
     GASOLINE
-    DIESEL
     ELECTRIC
     HYBRID
+    ROTARY
+    DIESEL
     V4
     V6
     V8
@@ -116,7 +118,6 @@ enum EngineType {
     V12
     I4
     I6
-    ROTARY
 }
 
 enum TransmissionType {

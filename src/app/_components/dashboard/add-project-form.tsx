@@ -24,7 +24,7 @@ interface ProjectData {
   priority: string;
 }
 
-const AddProjectForm = ({ onSubmit }: AddProjectFormProps) => {
+const AddProjectForm = () => {
   const [formData, setFormData] = useState<ProjectData>({
     name: "",
     carMake: "",
@@ -37,7 +37,6 @@ const AddProjectForm = ({ onSubmit }: AddProjectFormProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(formData);
   };
 
   const handleChange = (field: keyof ProjectData, value: string | number) => {
@@ -48,7 +47,7 @@ const AddProjectForm = ({ onSubmit }: AddProjectFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form id="project-form" onSubmit={handleSubmit} className="space-y-4">
       <div className="space-y-2">
         <Label htmlFor="name">Project Name *</Label>
         <Input

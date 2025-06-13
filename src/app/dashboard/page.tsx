@@ -1,20 +1,41 @@
 "use client";
 import Navbar from "../_components/navbar";
 import { MetricCardRow } from "../_components/dashboard/metric-card";
-import { mockCars } from "~/utils/data";
 import QuickActions from "../_components/dashboard/quick-action";
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "~/components/ui/table";
-import { Car } from "lucide-react";
+import FeaturedCards from "../_components/dashboard/featured-cards";
+import { useUser } from "@clerk/nextjs";
+import { api } from "~/trpc/react";
+import { useEffect } from "react";
+import { toast } from "sonner";
 
 export default function DashboardPage() {
+  const { isSignedIn, user, isLoaded } = useUser();
+  const createUserMutation = api.createUser.createUser.useMutation();
+
+  useEffect(() => {
+    if (
+      isSignedIn &&
+      isLoaded &&
+      user &&
+      !createUserMutation.isPending &&
+      !createUserMutation.isSuccess &&
+      !createUserMutation.isError
+    ) {
+      createUserMutation.mutate(undefined, {
+        onSuccess: (data) => {
+          toast.success("User synced successfully", {
+            description: "Welcome back!",
+          });
+        },
+        onError: (error) => {
+          toast.error("Error syncing user", {
+            description: "Error syncing user, please try again.",
+          });
+        },
+      });
+    }
+  }, [isSignedIn, isLoaded, user, createUserMutation]);
+
   return (
     <div className="flex h-screen w-full flex-col">
       <Navbar />
@@ -28,38 +49,3 @@ export default function DashboardPage() {
     </div>
   );
 }
-
-const FeaturedCards = () => {
-  return (
-    <Card className="bg-bg2 w-full">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Car className="text-accent h-6 w-6" />
-          <h1 className="text-2xl text-white">Featured Cars</h1>
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Table className="text-lg">
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[100px]">Make</TableHead>
-              <TableHead>Model</TableHead>
-              <TableHead>Year</TableHead>
-              <TableHead className="hidden md:table-cell">HP</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {mockCars.map((car, index) => (
-              <TableRow key={index}>
-                <TableCell className="font-medium">{car.make}</TableCell>
-                <TableCell>{car.model}</TableCell>
-                <TableCell>{car.year}</TableCell>
-                <TableCell className="hidden md:table-cell">{car.hp}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </CardContent>
-    </Card>
-  );
-};

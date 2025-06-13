@@ -17,7 +17,7 @@ const MetricCard = ({ title, value, icon }: MetricCardProps) => {
           <h1 className="hidden text-nowrap md:block">{title}</h1>
           {icon}
         </CardTitle>
-        <h1 className="text-2xl">{value}</h1>
+        <h1 className="hidden text-2xl md:block">{value}</h1>
       </CardHeader>
     </Card>
   );
@@ -25,7 +25,7 @@ const MetricCard = ({ title, value, icon }: MetricCardProps) => {
 
 const MetricCardRow = () => {
   return (
-    <div className="m-auto mt-10 grid w-full grid-cols-2 gap-4 lg:grid-cols-4">
+    <div className="m-auto mt-10 grid w-full grid-cols-4 gap-4 lg:grid-cols-4">
       <MetricCard
         title="Dream Cars"
         value="8"

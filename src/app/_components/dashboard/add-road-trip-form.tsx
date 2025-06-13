@@ -18,7 +18,7 @@ interface RoadTripData {
   description: string;
 }
 
-const AddRoadTripForm = ({ onSubmit }: AddRoadTripFormProps) => {
+const AddRoadTripForm = () => {
   const [formData, setFormData] = useState<RoadTripData>({
     name: "",
     startLocation: "",
@@ -32,7 +32,6 @@ const AddRoadTripForm = ({ onSubmit }: AddRoadTripFormProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(formData);
   };
 
   const handleChange = (field: keyof RoadTripData, value: string | number) => {
@@ -43,7 +42,7 @@ const AddRoadTripForm = ({ onSubmit }: AddRoadTripFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form id="road-trip-form" onSubmit={handleSubmit} className="space-y-4">
       <div className="space-y-2">
         <Label htmlFor="name">Trip Name *</Label>
         <Input

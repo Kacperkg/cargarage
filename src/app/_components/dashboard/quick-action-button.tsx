@@ -23,8 +23,8 @@ const QuickActionButtons = ({
       {...props}
     >
       <h1 className="text-2xl">{icon}</h1>
-      <h1 className="bold mt-[8px]">{title}</h1>
-      <h2 className="text-xs text-white/70">{desc}</h2>
+      <h1 className="bold mt-[8px] hidden lg:block">{title}</h1>
+      <h2 className="hidden text-xs text-white/70 lg:block">{desc}</h2>
     </button>
   );
 };
