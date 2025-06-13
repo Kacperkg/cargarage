@@ -70,7 +70,7 @@ model ProjectCar {
     model          String
     year           Int
     vin            String?       @unique
-    status         ProjectStatus @default(PLANNED)
+    status         ProjectStatus @default(Planned)
     description    String?
     startDate      DateTime      @default(now())
     completionDate DateTime?
@@ -98,11 +98,11 @@ model Modification {
 }
 
 enum ProjectStatus {
-    PLANNED
-    IN_PROGRESS
-    COMPLETED
-    ON_HOLD
-    CANCELLED
+    Planned
+    InProgress
+    Completed
+    OnHold
+    Cancelled
 }
 
 enum EngineType {

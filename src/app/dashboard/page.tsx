@@ -22,9 +22,6 @@ export default function DashboardPage() {
       !createUserMutation.isError
     ) {
       createUserMutation.mutate(undefined, {
-        onSuccess: () => {
-          toast.message("Welcome back!");
-        },
         onError: () => {
           toast.error("Error syncing user", {
             description: "Error syncing user, please try again.",

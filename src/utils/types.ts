@@ -1,27 +1,11 @@
 import type { ReactNode } from "react";
-
-export enum EngineType {
-  GASOLINE = "GASOLINE",
-  DIESEL = "DIESEL",
-  ELECTRIC = "ELECTRIC",
-  HYBRID = "HYBRID",
-  ROTARY = "ROTARY",
-  V4 = "V4",
-  V6 = "V6",
-  V8 = "V8",
-  V10 = "V10",
-  V12 = "V12",
-  I4 = "I4",
-  I6 = "I6",
-}
-
-export enum TransmissionType {
-  MANUAL = "MANUAL",
-  AUTOMATIC = "AUTOMATIC",
-  SEMI_AUTOMATIC = "SEMI_AUTOMATIC",
-  CVT = "CVT",
-  DCT = "DCT",
-}
+import {
+  ProjectType,
+  Priority,
+  EngineType,
+  TransmissionType,
+  ProjectStatus,
+} from "@prisma/client";
 
 export type DreamCarFormData = {
   make: string;
@@ -33,14 +17,6 @@ export type DreamCarFormData = {
   engineType: EngineType;
   transmissionType: TransmissionType;
 };
-
-export enum ProjectStatus {
-  PLANNED = "PLANNED",
-  IN_PROGRESS = "IN_PROGRESS",
-  COMPLETED = "COMPLETED",
-  ON_HOLD = "ON_HOLD",
-  CANCELLED = "CANCELLED",
-}
 
 export interface User {
   id: string;
@@ -98,6 +74,8 @@ export interface ProjectCar {
   updatedAt: Date;
   ownerId: string;
   modifications: Modification[];
+  priority: Priority;
+  projectType: ProjectType;
 }
 
 export interface Modification {
@@ -114,10 +92,10 @@ export type ProjectData = {
   name: string;
   carMake: string;
   carModel: string;
-  projectType: string;
+  projectType: ProjectType;
   budget: number;
   description: string;
-  priority: string;
+  priority: Priority;
 };
 
 export type RoadTripData = {

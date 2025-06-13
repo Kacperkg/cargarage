@@ -10,11 +10,8 @@ import {
   SelectValue,
 } from "~/components/ui/select";
 import { toast } from "sonner";
-import type {
-  DreamCarFormData,
-  EngineType,
-  TransmissionType,
-} from "~/utils/types";
+import type { DreamCarFormData } from "~/utils/types";
+import { EngineType, TransmissionType } from "@prisma/client";
 import { api } from "~/trpc/react";
 
 const AddDreamCarForm = () => {
@@ -43,18 +40,23 @@ const AddDreamCarForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      createDreamCar.mutate({
+    createDreamCar.mutate(
+      {
         ...formData,
         color: formData.color ?? "",
         description: formData.description ?? "",
         engineType: formData.engineType as EngineType,
         transmissionType: formData.transmissionType as TransmissionType,
-      });
-      toast.success("Dream car added successfully!");
-    } catch (error) {
-      toast.error("Failed to add dream car. Please try again.");
-    }
+      },
+      {
+        onSuccess: () => {
+          toast.success("Dream car added successfully!");
+        },
+        onError: () => {
+          toast.error("Failed to add dream car. Please try again.");
+        },
+      },
+    );
   };
 
   return (

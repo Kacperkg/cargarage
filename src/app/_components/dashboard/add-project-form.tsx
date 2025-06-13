@@ -9,41 +9,57 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
-
-interface AddProjectFormProps {
-  onSubmit: (data: ProjectData) => void;
-}
-
-interface ProjectData {
-  name: string;
-  carMake: string;
-  carModel: string;
-  projectType: string;
-  budget: number;
-  description: string;
-  priority: string;
-}
+import type { ProjectData } from "~/utils/types";
+import { api } from "~/trpc/react";
+import { toast } from "sonner";
+import { ProjectType, Priority } from "@prisma/client";
 
 const AddProjectForm = () => {
   const [formData, setFormData] = useState<ProjectData>({
     name: "",
     carMake: "",
     carModel: "",
-    projectType: "",
+    projectType: "Performance" as ProjectType,
     budget: 0,
     description: "",
-    priority: "",
+    priority: "Low" as Priority,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-  };
-
-  const handleChange = (field: keyof ProjectData, value: string | number) => {
+  const handleChange = (
+    field: keyof ProjectData,
+    value: string | number | null,
+  ) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
     }));
+  };
+
+  const createProjectCar = api.createProjectCar.createProjectCar.useMutation();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    createProjectCar.mutate(
+      {
+        ...formData,
+        projectType: formData.projectType as ProjectType,
+        priority: formData.priority as Priority,
+        make: formData.carMake,
+        model: formData.carModel,
+        year: new Date().getFullYear(),
+        status: "Planned",
+        startDate: new Date(),
+        completionDate: new Date(),
+      },
+      {
+        onSuccess: () => {
+          toast.success("Project created successfully");
+        },
+        onError: () => {
+          toast.error("Failed to create project");
+        },
+      },
+    );
   };
 
   return (
@@ -90,10 +106,10 @@ const AddProjectForm = () => {
               <SelectValue placeholder="Select project type" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="PERFORMANCE">Performance</SelectItem>
-              <SelectItem value="AESTHETIC">Aesthetic</SelectItem>
-              <SelectItem value="RESTORATION">Restoration</SelectItem>
-              <SelectItem value="MAINTENANCE">Maintenance</SelectItem>
+              <SelectItem value="Performance">Performance</SelectItem>
+              <SelectItem value="Aesthetics">Aesthetic</SelectItem>
+              <SelectItem value="Restoration">Restoration</SelectItem>
+              <SelectItem value="Maintenance">Maintenance</SelectItem>
               <SelectItem value="AUDIO">Audio System</SelectItem>
               <SelectItem value="SUSPENSION">Suspension</SelectItem>
             </SelectContent>
@@ -106,10 +122,10 @@ const AddProjectForm = () => {
               <SelectValue placeholder="Select priority" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="LOW">Low</SelectItem>
-              <SelectItem value="MEDIUM">Medium</SelectItem>
-              <SelectItem value="HIGH">High</SelectItem>
-              <SelectItem value="URGENT">Urgent</SelectItem>
+              <SelectItem value="Low">Low</SelectItem>
+              <SelectItem value="Medium">Medium</SelectItem>
+              <SelectItem value="High">High</SelectItem>
+              <SelectItem value="Urgent">Urgent</SelectItem>
             </SelectContent>
           </Select>
         </div>

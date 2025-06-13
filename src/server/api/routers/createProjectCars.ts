@@ -1,23 +1,24 @@
 import { TRPCError } from "@trpc/server";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { z } from "zod";
-import { EngineType, TransmissionType } from "@prisma/client";
+import { Priority, ProjectType, ProjectStatus } from "@prisma/client";
 
-export const createMyCarsRouter = createTRPCRouter({
-  createMyCar: protectedProcedure
+export const createProjectCarRouter = createTRPCRouter({
+  createProjectCar: protectedProcedure
     .input(
       z.object({
-        vin: z.string(),
+        name: z.string(),
         make: z.string(),
         model: z.string(),
         year: z.number(),
-        mileage: z.number(),
-        hp: z.number(),
-        color: z.string().optional(),
+        vin: z.string().optional(),
+        status: z.nativeEnum(ProjectStatus),
         description: z.string().optional(),
-        engineType: z.nativeEnum(EngineType),
-        transmissionType: z.nativeEnum(TransmissionType),
-        purchaseDate: z.date().optional(),
+        startDate: z.date(),
+        completionDate: z.date().optional(),
+        budget: z.number().optional(),
+        priority: z.nativeEnum(Priority),
+        projectType: z.nativeEnum(ProjectType),
       }),
     )
     .mutation(async ({ ctx, input }) => {
@@ -41,23 +42,24 @@ export const createMyCarsRouter = createTRPCRouter({
         });
       }
 
-      const myCar = await db.myCar.create({
+      const projectCar = await db.projectCar.create({
         data: {
-          vin: input.vin,
+          name: input.name,
           make: input.make,
           model: input.model,
           year: input.year,
-          mileage: input.mileage,
-          hp: input.hp,
-          color: input.color ?? "",
-          description: input.description ?? "",
-          engineType: input.engineType,
-          transmissionType: input.transmissionType,
-          purchaseDate: input.purchaseDate ?? undefined,
+          vin: input.vin,
+          status: input.status,
+          description: input.description,
+          startDate: input.startDate,
+          completionDate: input.completionDate,
+          budget: input.budget,
+          priority: input.priority,
+          projectType: input.projectType,
           ownerId: user.clerkId,
         },
       });
 
-      return myCar;
+      return projectCar;
     }),
 });

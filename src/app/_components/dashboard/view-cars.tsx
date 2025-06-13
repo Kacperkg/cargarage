@@ -2,7 +2,6 @@ import React from "react";
 import { Car } from "lucide-react";
 
 const ViewCarsDisplay = () => {
-  // Mock data for demonstration
   const cars = [
     { id: 1, make: "BMW", model: "M3", year: 2023, color: "Alpine White" },
     {
