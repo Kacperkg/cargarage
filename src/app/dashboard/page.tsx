@@ -33,8 +33,7 @@ export default function DashboardPage() {
 
   return (
     <div className="flex h-screen w-full flex-col">
-      <Navbar />
-      <div className="w-full px-2 sm:px-4 md:m-auto lg:px-32">
+      <div className="w-full px-2 sm:px-4 md:mx-auto lg:px-16">
         <MetricCardRow />
         <div className="mt-10 flex flex-col justify-between gap-4 xl:flex-row">
           <FeaturedCards />

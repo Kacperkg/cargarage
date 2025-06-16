@@ -4,6 +4,10 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "~/styles/globals.css";
 import { TRPCReactProvider } from "~/trpc/react";
 import { Toaster } from "~/components/ui/sonner";
+import { SidebarProvider, SidebarTrigger } from "~/components/ui/sidebar";
+import { AppSidebar } from "~/app/_components/app-sidebar";
+import { Separator } from "~/components/ui/separator";
+import GetPath from "./_components/get-path";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +35,19 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ClerkProvider>
-          <TRPCReactProvider>{children}</TRPCReactProvider>
+          <SidebarProvider>
+            <AppSidebar />
+            <TRPCReactProvider>
+              <div className="flex w-full flex-col">
+                <div className="mt-8 flex flex-row items-center gap-2 sm:px-4 lg:px-16">
+                  <SidebarTrigger />
+                  <Separator className="my-4" orientation="vertical" />
+                  <GetPath />
+                </div>
+                {children}
+              </div>
+            </TRPCReactProvider>
+          </SidebarProvider>
         </ClerkProvider>
         <Toaster position="top-center" />
       </body>

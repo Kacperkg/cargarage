@@ -13,15 +13,20 @@ import { Settings, User, LogOut } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { SignOutButton } from "@clerk/nextjs";
 import { useUser } from "@clerk/nextjs";
+import Link from "next/link";
 
 export default function Navbar() {
   const { user } = useUser();
 
   return (
     <header className="animate-fade-in bg-bg2 flex items-center justify-between border-b-1 px-6 py-4">
-      <div>
-        <h1 className="text-foreground text-2xl font-bold">Dream Garage</h1>
-        <p className="text-muted-foreground">Welcome back, {user?.firstName}</p>
+      <div className="bold flex flex-row gap-6 text-xl">
+        <Link href="/dashboard">Dashboard</Link>
+        <Link href="/my-cars">My Cars</Link>
+        <Link href="/dream-cars">Dream Cars</Link>
+        <Link href="/projects">Projects</Link>
+        <Link href="/goals">Goals</Link>
+        <Link href="/road-trip">Road Trip</Link>
       </div>
 
       <div className="flex items-center space-x-4">

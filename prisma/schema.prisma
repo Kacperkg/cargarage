@@ -47,6 +47,7 @@ model MyCar {
     model            String
     year             Int
     mileage          Int
+    milesBoughtAt    Int
     hp               Int
     color            String?
     description      String?

@@ -47,6 +47,7 @@ export interface MyCar {
   model: string;
   year: number;
   mileage: number;
+  milesBoughtAt: number;
   hp: number;
   color: string | null;
   description: string | null;
