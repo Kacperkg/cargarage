@@ -23,37 +23,31 @@ import type { QuickAction } from "~/utils/types";
 const quickActions: QuickAction[] = [
   {
     title: "Add Dream Car",
-    description: "Add to wishlist",
     icon: <Heart className="h-5 w-5" />,
     color: "oklch(0.645 0.246 16.439)",
   },
   {
     title: "Projects",
-    description: "Start Modifying",
     icon: <Wrench className="h-5 w-5" />,
     color: "oklch(0.769 0.188 70.08)",
   },
   {
     title: "Road Trips",
-    description: "Track/Add Road Trips",
     icon: <Map className="h-5 w-5" />,
     color: "oklch(0.488 0.243 264.376)",
   },
   {
     title: "My Cars",
-    description: "View Your Cars",
     icon: <Car className="h-5 w-5" />,
     color: "oklch(0.696 0.17 162.48)",
   },
   {
     title: "Goals",
-    description: "Track Your Goals",
     icon: <Target className="h-5 w-5" />,
     color: "oklch(0.704 0.191 22.216)",
   },
   {
     title: "Service Log",
-    description: "Track maintenance",
     icon: <FileText className="h-5 w-5" />,
     color: "oklch(0.627 0.265 303.9)",
   },
@@ -197,7 +191,7 @@ const QuickActions = () => {
   };
 
   return (
-    <Card className="animate-fade-in bg-bg2 flex-basis-1/2">
+    <Card className="animate-fade-in bg-bg2 w-full xl:max-w-xs">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Plus className="text-primary h-5 w-5" />
@@ -208,12 +202,7 @@ const QuickActions = () => {
         {quickActions.map((action, index) => (
           <AlertDialog key={index}>
             <AlertDialogTrigger asChild>
-              <QuickActionButtons
-                title={action.title}
-                desc={action.description}
-                icon={action.icon}
-                color={action.color}
-              />
+              <QuickActionButtons icon={action.icon} color={action.color} />
             </AlertDialogTrigger>
             {renderDialogContent(action)}
           </AlertDialog>

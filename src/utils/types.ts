@@ -132,7 +132,6 @@ export type ServiceLogData = {
 
 export type QuickAction = {
   title: string;
-  description: string;
   icon: ReactNode;
   color: string;
 };
