@@ -11,13 +11,13 @@ import {
   AlertDialogTrigger,
 } from "~/components/ui/alert-dialog";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
-import AddDreamCarForm from "./add-dream-car-form";
-import AddProjectForm from "./add-project-form";
-import AddRoadTripForm from "./add-road-trip-form";
-import AddGoalForm from "./add-goal-form";
-import AddServiceLogForm from "./add-service-log-form";
-import ViewCarsDisplay from "./view-cars";
-import QuickActionButtons from "./quick-action-button";
+import AddDreamCarForm from "~/app/_components/dashboard/forms/add-dream-car-form";
+import AddProjectForm from "~/app/_components/dashboard/forms/add-project-form";
+import AddRoadTripForm from "~/app/_components/dashboard/forms/add-road-trip-form";
+import AddGoalForm from "~/app/_components/dashboard/forms/add-goal-form";
+import AddServiceLogForm from "~/app/_components/dashboard/forms/add-service-log-form";
+import ViewCarsDisplay from "~/app/_components/dashboard/view-cars";
+import QuickActionButtons from "~/app/_components/dashboard/quick-actions/quick-action-button";
 import type { QuickAction } from "~/utils/types";
 
 const quickActions: QuickAction[] = [

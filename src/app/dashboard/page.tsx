@@ -1,7 +1,7 @@
 "use client";
-import Navbar from "../_components/navbar";
-import { MetricCardRow } from "../_components/dashboard/metric-card";
-import QuickActions from "../_components/dashboard/quick-action";
+
+import { MetricCardRow } from "../_components/dashboard/metrics/metric-card";
+import QuickActions from "../_components/dashboard/quick-actions/quick-action";
 import FeaturedCards from "../_components/dashboard/featured-cards";
 import { useUser } from "@clerk/nextjs";
 import { api } from "~/trpc/react";

@@ -22,7 +22,6 @@ const ViewCarsDisplay = () => {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-lg font-semibold">Your Garage</h3>
       <div className="space-y-3">
         {cars.map((car) => (
           <div
