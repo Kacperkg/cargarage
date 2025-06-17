@@ -95,12 +95,6 @@ export default function AddCarForm() {
     }
   }, [isSuccess, isError, error]);
 
-  const parseDateString = (dateString: string) => {
-    if (!dateString) return null;
-    const [day, month, year] = dateString.split("/");
-    return new Date(year, month - 1, day);
-  };
-
   return (
     <div className="mx-auto w-full">
       <div className="mb-6">
