@@ -1,7 +1,7 @@
 import { TRPCError } from "@trpc/server";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { z } from "zod";
-import { EngineType, TransmissionType } from "@prisma/client";
+import { CarStatus, EngineType, TransmissionType } from "@prisma/client";
 
 export const createMyCarsRouter = createTRPCRouter({
   createMyCar: protectedProcedure
@@ -18,7 +18,10 @@ export const createMyCarsRouter = createTRPCRouter({
         description: z.string().optional(),
         engineType: z.nativeEnum(EngineType),
         transmissionType: z.nativeEnum(TransmissionType),
-        purchaseDate: z.date().optional(),
+        purchaseDate: z.date(),
+        licensePlate: z.string().optional(),
+        engine: z.string().optional(),
+        status: z.nativeEnum(CarStatus),
       }),
     )
     .mutation(async ({ ctx, input }) => {
@@ -55,7 +58,10 @@ export const createMyCarsRouter = createTRPCRouter({
           description: input.description ?? "",
           engineType: input.engineType,
           transmissionType: input.transmissionType,
-          purchaseDate: input.purchaseDate ?? undefined,
+          purchaseDate: input.purchaseDate,
+          licensePlate: input.licensePlate ?? undefined,
+          engine: input.engine ?? undefined,
+          status: input.status,
           ownerId: user.clerkId,
         },
       });

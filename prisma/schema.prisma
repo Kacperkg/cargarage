@@ -53,7 +53,10 @@ model MyCar {
     description      String?
     engineType       EngineType
     transmissionType TransmissionType
-    purchaseDate     DateTime?
+    purchaseDate     DateTime
+    licensePlate     String?
+    engine           String?
+    status           CarStatus        @default(Daily)
 
     ownerId String
     owner   User   @relation(fields: [ownerId], references: [clerkId], onDelete: Cascade)
@@ -143,4 +146,15 @@ enum Priority {
     Medium
     High
     Urgent
+}
+
+enum CarStatus {
+    Daily
+    Summer
+    Winter
+    Track
+    Show
+    Garage
+    Project
+    Sold
 }

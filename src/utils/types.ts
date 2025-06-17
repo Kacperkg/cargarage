@@ -5,6 +5,7 @@ import {
   EngineType,
   TransmissionType,
   ProjectStatus,
+  CarStatus,
 } from "@prisma/client";
 
 export type DreamCarFormData = {
@@ -49,12 +50,14 @@ export interface MyCar {
   mileage: number;
   milesBoughtAt: number;
   hp: number;
-  color: string | null;
-  description: string | null;
+  color: string;
+  description: string;
   engineType: EngineType;
   transmissionType: TransmissionType;
-  purchaseDate: Date | null;
-  ownerId: string;
+  purchaseDate: Date;
+  licensePlate: string;
+  engine: string;
+  status: CarStatus;
   createdAt: Date;
   updatedAt: Date;
 }

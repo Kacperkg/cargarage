@@ -6,7 +6,7 @@ export default function GetPath() {
   const path = router.replace(/^\//, "");
 
   return (
-    <h1 className="text-xl">
+    <h1 className="text-2xl font-semibold">
       {path
         .split("-")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))

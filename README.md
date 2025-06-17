@@ -10,6 +10,7 @@
 - [ ] Implement error handling
 - [ ] Set up testing framework
 - [ ] Add documentation
+- [ ] Add Breadcrumbs properly
 
 - [x] Add dream car functionality
 - [x] Display user's cars
