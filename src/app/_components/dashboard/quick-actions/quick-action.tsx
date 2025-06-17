@@ -166,7 +166,7 @@ const QuickActions = () => {
     if (!config) return null;
 
     return (
-      <AlertDialogContent className="max-h-[80vh] max-w-2xl overflow-y-auto">
+      <AlertDialogContent className="bg-bg2 max-h-[80vh] max-w-2xl overflow-y-auto">
         <AlertDialogHeader>
           <AlertDialogTitle>{config.title}</AlertDialogTitle>
           <AlertDialogDescription asChild>

@@ -8,14 +8,12 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui/table";
-import { Car } from "lucide-react";
 
 export default function FeaturedCards() {
   return (
     <Card className="bg-bg2 w-full">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Car className="text-accent h-6 w-6" />
           <h1 className="text-2xl text-white">Featured Cars</h1>
         </CardTitle>
       </CardHeader>

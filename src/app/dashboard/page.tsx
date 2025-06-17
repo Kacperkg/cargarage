@@ -1,6 +1,6 @@
 "use client";
 
-import { MetricCardRow } from "../_components/dashboard/metrics/metric-card";
+import MetricCardRow from "../_components/dashboard/metrics/metric-row";
 import QuickActions from "../_components/dashboard/quick-actions/quick-action";
 import FeaturedCards from "../_components/dashboard/featured-cards";
 import { useUser } from "@clerk/nextjs";
@@ -33,9 +33,9 @@ export default function DashboardPage() {
 
   return (
     <div className="flex h-screen w-full flex-col">
-      <div className="w-full px-2 sm:px-4 md:mx-auto lg:px-16">
+      <div className="flex w-full flex-col gap-4 px-2 sm:px-4 md:mx-auto lg:px-16">
         <MetricCardRow />
-        <div className="mt-10 flex flex-col justify-between gap-4 xl:flex-row">
+        <div className="flex flex-col justify-between gap-4 xl:flex-row">
           <FeaturedCards />
           <QuickActions />
         </div>
