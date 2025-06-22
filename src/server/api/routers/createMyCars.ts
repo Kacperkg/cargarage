@@ -7,7 +7,7 @@ export const createMyCarsRouter = createTRPCRouter({
   createMyCar: protectedProcedure
     .input(
       z.object({
-        vin: z.string(),
+        vin: z.string().optional(),
         make: z.string(),
         model: z.string(),
         year: z.number(),
@@ -34,17 +34,6 @@ export const createMyCarsRouter = createTRPCRouter({
         });
       }
 
-      const user = await db.user.findUnique({
-        where: { clerkId: userId },
-      });
-
-      if (!user) {
-        throw new TRPCError({
-          code: "NOT_FOUND",
-          message: "User not found.",
-        });
-      }
-
       const myCar = await db.myCar.create({
         data: {
           vin: input.vin,
@@ -62,7 +51,7 @@ export const createMyCarsRouter = createTRPCRouter({
           licensePlate: input.licensePlate ?? undefined,
           engine: input.engine ?? undefined,
           status: input.status,
-          ownerId: user.clerkId,
+          ownerId: userId,
         },
       });
 

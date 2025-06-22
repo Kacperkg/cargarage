@@ -20,13 +20,6 @@ import { api } from "~/trpc/react";
 import { toast } from "sonner";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "~/components/ui/popover";
-import { CalendarIcon } from "lucide-react";
-import { format } from "date-fns";
 
 export default function AddCarForm() {
   const [formData, setFormData] = useState<MyCar>({
@@ -118,12 +111,11 @@ export default function AddCarForm() {
           <CardContent>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               <div className="space-y-2">
-                <Label htmlFor="vin">VIN Number *</Label>
+                <Label htmlFor="vin">VIN Number</Label>
                 <Input
                   id="vin"
                   name="vin"
                   placeholder="1HGBH41JXMN109186"
-                  required
                   value={formData.vin}
                   onChange={(e) =>
                     setFormData({ ...formData, vin: e.target.value })
