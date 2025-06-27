@@ -35,6 +35,7 @@ import { SignOutButton } from "@clerk/nextjs";
 import { User, LogOut } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 // Menu items.
 const items = [
@@ -72,6 +73,13 @@ const items = [
 
 export function AppSidebar() {
   const { user } = useUser();
+
+  const pathname = usePathname();
+
+  if (pathname === "/") {
+    return null;
+  }
+
   return (
     <Sidebar>
       <SidebarContent className="bg-bg2">

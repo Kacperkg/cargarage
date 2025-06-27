@@ -28,7 +28,7 @@ export default function MyCarsCard() {
 
   if (!isError) {
     return myCars.map((car) => (
-      <Card key={car.vin} className="bg-bg2 flex flex-col gap-2">
+      <Card key={car.id} className="bg-bg2 flex flex-col gap-2">
         <CardHeader className="flex aspect-video items-center justify-center border-b-2">
           <Car className="text-accent h-10 w-10" />
         </CardHeader>

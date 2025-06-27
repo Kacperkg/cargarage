@@ -8,6 +8,7 @@ import { SidebarProvider, SidebarTrigger } from "~/components/ui/sidebar";
 import { AppSidebar } from "~/app/_components/app-sidebar";
 import { Separator } from "~/components/ui/separator";
 import GetPath from "./_components/get-path";
+import SidebarTriggerComponent from "./_components/sidebar-trigget";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,11 +40,7 @@ export default function RootLayout({
             <AppSidebar />
             <TRPCReactProvider>
               <div className="flex w-full flex-col">
-                <div className="mt-8 flex flex-row items-center gap-2 sm:px-4 lg:px-16">
-                  <SidebarTrigger />
-                  <Separator className="my-4" orientation="vertical" />
-                  <GetPath />
-                </div>
+                <SidebarTriggerComponent />
                 {children}
               </div>
             </TRPCReactProvider>
