@@ -8,7 +8,7 @@ import { api } from "~/trpc/react";
 import { useEffect } from "react";
 import { toast } from "sonner";
 
-export default function DashboardPage() {
+export default function DashboardPageTemp() {
   const { isSignedIn, user, isLoaded } = useUser();
   const createUserMutation = api.createUser.createUser.useMutation();
 
