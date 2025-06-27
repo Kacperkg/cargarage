@@ -3,6 +3,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 import { HydrateClient } from "~/trpc/server";
+import Landing from "./_components/landing";
 
 export default async function Home() {
   const user = await currentUser();
@@ -13,11 +14,7 @@ export default async function Home() {
 
   return (
     <HydrateClient>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-        <SignedOut>
-          <SignInButton />
-        </SignedOut>
-      </main>
+      <Landing />
     </HydrateClient>
   );
 }
