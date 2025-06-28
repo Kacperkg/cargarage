@@ -8,10 +8,9 @@ const Landing = () => {
   return (
     <div className="bg-background min-h-screen">
       {/* Navigation */}
-      <nav className="border-border border-b">
+      <nav className="border-border bg-bg2 border-b">
         <div className="container mx-auto flex items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2">
-            <Car className="text-primary h-8 w-8" />
             <span className="text-2xl font-bold">CarVault</span>
           </div>
           <SignedOut>
@@ -29,7 +28,7 @@ const Landing = () => {
       <section className="px-6 py-20">
         <div className="container mx-auto text-center">
           <div className="mx-auto max-w-4xl">
-            <h1 className="from-primary to-secondary mb-6 bg-gradient-to-r bg-clip-text text-6xl font-bold text-transparent">
+            <h1 className="from-accent-foreground to-accent mb-6 bg-gradient-to-r bg-clip-text text-6xl leading-normal font-bold text-transparent">
               Your Digital Garage
             </h1>
             <p className="text-muted-foreground mx-auto mb-8 max-w-2xl text-xl">
@@ -52,7 +51,7 @@ const Landing = () => {
       </section>
 
       {/* Features Section */}
-      <section className="bg-muted/20 px-6 py-20">
+      <section className="px-6 py-20">
         <div className="container mx-auto">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-4xl font-bold">Everything You Need</h2>
@@ -63,7 +62,7 @@ const Landing = () => {
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <Card className="p-6 text-center transition-shadow hover:shadow-lg">
+            <Card className="bg-bg2 p-6 text-center transition-shadow hover:shadow-lg">
               <CardContent className="pt-6">
                 <Car className="text-primary mx-auto mb-4 h-12 w-12" />
                 <h3 className="mb-2 text-xl font-semibold">
@@ -76,7 +75,7 @@ const Landing = () => {
               </CardContent>
             </Card>
 
-            <Card className="p-6 text-center transition-shadow hover:shadow-lg">
+            <Card className="bg-bg2 p-6 text-center transition-shadow hover:shadow-lg">
               <CardContent className="pt-6">
                 <Heart className="text-primary mx-auto mb-4 h-12 w-12" />
                 <h3 className="mb-2 text-xl font-semibold">
@@ -89,7 +88,7 @@ const Landing = () => {
               </CardContent>
             </Card>
 
-            <Card className="p-6 text-center transition-shadow hover:shadow-lg">
+            <Card className="bg-bg2 p-6 text-center transition-shadow hover:shadow-lg">
               <CardContent className="pt-6">
                 <Wrench className="text-primary mx-auto mb-4 h-12 w-12" />
                 <h3 className="mb-2 text-xl font-semibold">Project Tracking</h3>
@@ -100,7 +99,7 @@ const Landing = () => {
               </CardContent>
             </Card>
 
-            <Card className="p-6 text-center transition-shadow hover:shadow-lg">
+            <Card className="bg-bg2 p-6 text-center transition-shadow hover:shadow-lg">
               <CardContent className="pt-6">
                 <Map className="text-primary mx-auto mb-4 h-12 w-12" />
                 <h3 className="mb-2 text-xl font-semibold">
@@ -113,7 +112,7 @@ const Landing = () => {
               </CardContent>
             </Card>
 
-            <Card className="p-6 text-center transition-shadow hover:shadow-lg">
+            <Card className="bg-bg2 p-6 text-center transition-shadow hover:shadow-lg">
               <CardContent className="pt-6">
                 <Star className="text-primary mx-auto mb-4 h-12 w-12" />
                 <h3 className="mb-2 text-xl font-semibold">Set Your Goals</h3>
@@ -123,7 +122,7 @@ const Landing = () => {
               </CardContent>
             </Card>
 
-            <Card className="p-6 text-center transition-shadow hover:shadow-lg">
+            <Card className="bg-bg2 p-6 text-center transition-shadow hover:shadow-lg">
               <CardContent className="pt-6">
                 <FileText className="text-primary mx-auto mb-4 h-12 w-12" />
                 <h3 className="mb-2 text-xl font-semibold">Service Logs</h3>
