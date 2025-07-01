@@ -10,7 +10,7 @@ export default function ProjectsPage() {
               🚧 Feature Coming Soon 🚧
             </h1>
             <p className="text-muted-foreground text-lg">
-              We're working hard to bring you amazing goal tracking features!
+              We&apos;re working hard to bring you amazing project features!
             </p>
             <p className="text-muted-foreground mt-2 text-sm">
               Stay tuned for updates
