@@ -15,10 +15,17 @@ import { api } from "~/trpc/react";
 import MetricCard from "./metric-card";
 
 export default function MetricCardRow() {
-  const { data: myCars } = api.getMyCars.getMyCars.useQuery();
-  const { data: myHp } = api.getMyCars.getMyHp.useQuery();
-  const { data: dreamCar } = api.getDreamCar.getDreamCar.useQuery();
-  const { data: myMiles } = api.getMyCars.getMyMiles.useQuery();
+  const { data: myCars, isLoading: isLoadingMyCars } =
+    api.getMyCars.getMyCars.useQuery();
+  const { data: myHp, isLoading: isLoadingMyHp } =
+    api.getMyCars.getMyHp.useQuery();
+  const { data: dreamCar, isLoading: isLoadingDreamCar } =
+    api.getDreamCar.getDreamCar.useQuery();
+  const { data: myMiles, isLoading: isLoadingMyMiles } =
+    api.getMyCars.getMyMiles.useQuery();
+
+  const isLoading =
+    isLoadingMyCars || isLoadingMyHp || isLoadingDreamCar || isLoadingMyMiles;
 
   const metrics = [
     {
@@ -88,7 +95,7 @@ export default function MetricCardRow() {
   }) => (
     <div>
       <div className="hidden xl:block">
-        <MetricCard {...metric} />
+        <MetricCard {...metric} isLoading={isLoading} />
       </div>
       <AlertDialog>
         <AlertDialogTrigger asChild>
