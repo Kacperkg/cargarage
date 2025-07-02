@@ -4,8 +4,7 @@ import {
   CardFooter,
   CardHeader,
 } from "~/components/ui/card";
-import { Car, Gauge, Palette, Settings, Calendar } from "lucide-react";
-import { Button } from "~/components/ui/button";
+import { Car, Gauge, Palette, Calendar } from "lucide-react";
 import { Skeleton } from "~/components/ui/skeleton";
 
 export default function CardSkeleton() {
@@ -19,9 +18,9 @@ export default function CardSkeleton() {
           <CardContent>
             <ul className="flex flex-col gap-2">
               <li className="flex flex-row gap-2 text-2xl font-semibold">
-                <Skeleton className="h-6 w-[5ch]" />
-                <Skeleton className="h-6 w-[5ch]" />
-                <Skeleton className="h-6 w-[3ch]" />
+                <Skeleton className="h-6 w-[4ch]" />
+                <Skeleton className="h-6 w-[4ch]" />
+                <Skeleton className="h-6 w-[4ch]" />
               </li>
               <li className="text-muted-foreground flex flex-row items-center gap-2">
                 <h1>
