@@ -9,7 +9,8 @@ import {
   CardHeader,
 } from "~/components/ui/card";
 import { api } from "~/trpc/react";
-import { PropagateLoader } from "react-spinners";
+
+import CardSkeleton from "./card-skeleton";
 
 export default function MyCarsCard() {
   const {
@@ -19,11 +20,7 @@ export default function MyCarsCard() {
   } = api.getMyCars?.getMyCars.useQuery();
 
   if (isLoading || !myCars) {
-    return (
-      <div className="col-span-2 flex h-[80svh] w-full items-center justify-center">
-        <PropagateLoader color="#ec6d43" size={8} />
-      </div>
-    );
+    return <CardSkeleton />;
   }
 
   if (!isError) {

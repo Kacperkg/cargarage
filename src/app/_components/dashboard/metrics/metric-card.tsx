@@ -1,7 +1,6 @@
-"use client";
-
 import { Card, CardHeader, CardTitle } from "~/components/ui/card";
-import { CircleLoader } from "react-spinners";
+import { DotLoader } from "react-spinners";
+import { Skeleton } from "~/components/ui/skeleton";
 
 interface MetricCardProps {
   title: string;
@@ -24,7 +23,7 @@ export default function MetricCard({
           {icon}
         </CardTitle>
         <h1 className="hidden text-2xl xl:block">
-          {isLoading ? <CircleLoader color="#ec6d43" size={12} /> : value}
+          {isLoading ? <Skeleton className="h-6 w-[3ch]" /> : value}
         </h1>
       </CardHeader>
     </Card>

@@ -1,5 +1,4 @@
 "use client";
-
 import { Car, Zap, Gauge, Star } from "lucide-react";
 import {
   AlertDialog,

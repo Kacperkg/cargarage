@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import {
   Table,
@@ -8,7 +10,7 @@ import {
   TableRow,
 } from "~/components/ui/table";
 import { api } from "~/trpc/react";
-import { PropagateLoader } from "react-spinners";
+import { Skeleton } from "~/components/ui/skeleton";
 
 export default function FeaturedCards() {
   const {
@@ -36,13 +38,24 @@ export default function FeaturedCards() {
           </TableHeader>
           <TableBody>
             {isLoading && (
-              <TableRow>
-                <TableCell colSpan={4}>
-                  <div className="flex items-center justify-center py-4">
-                    <PropagateLoader color="#ec6d43" size={8} />
-                  </div>
-                </TableCell>
-              </TableRow>
+              <>
+                {Array.from({ length: 4 }).map((_, index) => (
+                  <TableRow key={index}>
+                    <TableCell className="text-center">
+                      <Skeleton className="h-6 w-[9ch]" />
+                    </TableCell>
+                    <TableCell className="text-center">
+                      <Skeleton className="h-6 w-[5ch]" />
+                    </TableCell>
+                    <TableCell className="text-center">
+                      <Skeleton className="h-6 w-[4ch]" />
+                    </TableCell>
+                    <TableCell className="text-center">
+                      <Skeleton className="h-6 w-[3ch]" />
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </>
             )}
             {isError && (
               <TableRow>
