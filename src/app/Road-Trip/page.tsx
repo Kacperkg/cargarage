@@ -1,5 +1,3 @@
-"use client";
-
 export default function RoadTripPage() {
   return (
     <div className="flex h-screen w-full flex-col">

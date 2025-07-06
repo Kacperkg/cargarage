@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Card,
   CardContent,
@@ -149,10 +147,7 @@ export default function About() {
       <div className="mx-auto max-w-4xl space-y-12">
         {/* Header */}
         <div className="space-y-6 text-center">
-          <div className="border-primary/20 bg-bg2 inline-flex items-center gap-3 rounded-2xl border p-4">
-            <Heart className="text-primary h-8 w-8" />
-            <h1 className="text-4xl font-bold">About CarVault</h1>
-          </div>
+          <h1 className="text-4xl font-bold">About CarVault</h1>
           <p className="text-muted-foreground mx-auto max-w-3xl text-xl leading-relaxed">
             Your personal automotive sanctuary where passion meets organization.
             Discover, collect, and manage your dream cars like never before.

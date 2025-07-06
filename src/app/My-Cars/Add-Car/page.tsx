@@ -1,5 +1,3 @@
-"use client";
-
 import AddCarForm from "~/app/_components/my-cars/add-car/add-car-form";
 
 export default function AddCarPage() {

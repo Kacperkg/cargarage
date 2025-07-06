@@ -1,5 +1,3 @@
-"use client";
-
 export default function ProjectsPage() {
   return (
     <div className="flex h-screen w-full flex-col">
