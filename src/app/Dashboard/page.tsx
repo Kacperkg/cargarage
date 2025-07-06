@@ -32,7 +32,7 @@ export default function DashboardPage() {
   }, [isSignedIn, isLoaded, user, createUserMutation]);
 
   return (
-    <div className="flex h-screen w-full flex-col">
+    <div className="flex h-[80svh] w-full flex-col items-center justify-center">
       <div className="flex w-full flex-col gap-4 px-2 sm:px-4 md:mx-auto lg:px-16">
         <MetricCardRow />
         <div className="flex flex-col justify-between gap-4 xl:flex-row">
