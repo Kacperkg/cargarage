@@ -149,11 +149,9 @@ export default function About() {
       <div className="mx-auto max-w-4xl space-y-12">
         {/* Header */}
         <div className="space-y-6 text-center">
-          <div className="from-primary/10 via-secondary/10 to-primary/10 border-primary/20 inline-flex items-center gap-3 rounded-2xl border bg-gradient-to-r p-4">
+          <div className="border-primary/20 bg-bg2 inline-flex items-center gap-3 rounded-2xl border p-4">
             <Heart className="text-primary h-8 w-8" />
-            <h1 className="from-primary to-secondary bg-gradient-to-r bg-clip-text text-4xl font-bold text-transparent">
-              About CarVault
-            </h1>
+            <h1 className="text-4xl font-bold">About CarVault</h1>
           </div>
           <p className="text-muted-foreground mx-auto max-w-3xl text-xl leading-relaxed">
             Your personal automotive sanctuary where passion meets organization.
@@ -162,7 +160,7 @@ export default function About() {
         </div>
 
         {/* Vision Section */}
-        <Card className="border-primary/20 from-card via-card to-primary/5 border-2 bg-gradient-to-br">
+        <Card className="border-primary/20 bg-bg2 bg-bg2">
           <CardHeader className="pb-6 text-center">
             <div className="mb-4 flex items-center justify-center gap-3">
               <Target className="text-primary h-6 w-6" />
@@ -205,7 +203,7 @@ export default function About() {
             {plannedFeatures.map((feature, index) => (
               <Card
                 key={index}
-                className="group hover:border-primary/30 transition-all duration-300 hover:shadow-xl"
+                className="group hover:border-primary/30 bg-bg2 transition-all duration-300 hover:shadow-xl"
               >
                 <CardHeader className="pb-4">
                   <div className="mb-3 flex items-center justify-between">
@@ -230,7 +228,7 @@ export default function About() {
         </div>
 
         {/* Additional Features */}
-        <Card className="from-secondary/5 via-background to-primary/5 border-secondary/20 bg-gradient-to-r">
+        <Card className="border-secondary/20 bg-bg2">
           <CardHeader className="text-center">
             <CardTitle className="flex items-center justify-center gap-3 text-2xl">
               <CheckCircle className="text-secondary h-6 w-6" />
@@ -258,7 +256,7 @@ export default function About() {
         </Card>
 
         {/* Tech Stack Section */}
-        <Card className="from-primary/5 via-background to-secondary/5 border-primary/20 bg-gradient-to-r">
+        <Card className="border-primary/20 bg-bg2">
           <CardHeader className="text-center">
             <CardTitle className="flex items-center justify-center gap-3 text-2xl">
               <Wrench className="text-primary h-6 w-6" />
@@ -294,7 +292,7 @@ export default function About() {
         </Card>
 
         {/* Footer CTA */}
-        <Card className="from-primary/10 via-secondary/10 to-primary/10 border-primary/20 bg-gradient-to-r text-center">
+        <Card className="border-primary/20 bg-bg2 text-center">
           <CardContent className="p-8">
             <h3 className="mb-3 text-xl font-semibold">
               Start Your Collection
