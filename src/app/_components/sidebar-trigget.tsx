@@ -7,8 +7,10 @@ import { SidebarTrigger } from "~/components/ui/sidebar";
 
 export default function SidebarTriggerComponent() {
   const pathname = usePathname();
+  const pathSegments = pathname.split("/").filter((segment) => segment !== "");
+  const depth = pathSegments.length;
 
-  if (pathname === "/") {
+  if (pathname === "/" || depth > 1) {
     return null;
   }
 

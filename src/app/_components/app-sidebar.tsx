@@ -8,11 +8,13 @@ import {
   Settings,
   Map,
   Target,
+  Info,
 } from "lucide-react";
 
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -55,28 +57,35 @@ const items = [
     icon: Calendar,
   },
   {
-    title: "Projects",
-    url: "/Projects",
-    icon: Search,
+    title: "About",
+    url: "/Info",
+    icon: Info,
   },
-  {
-    title: "Goals",
-    url: "/Goals",
-    icon: Target,
-  },
-  {
-    title: "Road Trip",
-    url: "/Road-Trip",
-    icon: Map,
-  },
+  // {
+  //   title: "Projects",
+  //   url: "/Projects",
+  //   icon: Search,
+  // },
+  // {
+  //   title: "Goals",
+  //   url: "/Goals",
+  //   icon: Target,
+  // },
+  // {
+  //   title: "Road Trip",
+  //   url: "/Road-Trip",
+  //   icon: Map,
+  // },
 ];
 
 export function AppSidebar() {
   const { user } = useUser();
 
   const pathname = usePathname();
+  const pathSegments = pathname.split("/").filter((segment) => segment !== "");
+  const depth = pathSegments.length;
 
-  if (pathname === "/") {
+  if (pathname === "/" || depth > 1) {
     return null;
   }
 
@@ -85,7 +94,7 @@ export function AppSidebar() {
       <SidebarContent className="bg-bg2">
         <SidebarGroup>
           <SidebarGroupLabel className="flex flex-row justify-between">
-            <h1 className="text-2xl font-bold">Car Garage</h1>
+            <h1 className="text-2xl font-bold">CarVault</h1>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -134,22 +143,35 @@ export function AppSidebar() {
             </DropdownMenu>
           </SidebarGroupLabel>
 
-          <SidebarGroupContent className="mt-4">
+          <SidebarGroupContent className="my-4">
+            <SidebarGroupLabel>Navigation</SidebarGroupLabel>
             <SidebarMenu>
-              {items.map((item, index) => (
-                <SidebarMenuItem key={index}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {items.map((item, index) => {
+                const isActive = pathname === item.url;
+                return (
+                  <SidebarMenuItem key={index}>
+                    <SidebarMenuButton asChild isActive={isActive}>
+                      <Link href={item.url}>
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter className="bg-bg2">
+        <div className="flex flex-col items-center gap-1 text-center">
+          <p className="text-muted-foreground text-xs">Version 0.1.0</p>
+          <p className="text-muted-foreground text-xs">
+            &copy; {new Date().getFullYear()} Kacper Gajdarski. All rights
+            reserved.
+          </p>
+        </div>
+      </SidebarFooter>
     </Sidebar>
   );
 }

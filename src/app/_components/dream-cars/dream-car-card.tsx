@@ -5,8 +5,11 @@ import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { api } from "~/trpc/react";
 import SkeletonCard from "./skeleton-card";
+import { useRouter } from "next/navigation";
 
 const DreamCarCard = () => {
+  const router = useRouter();
+
   const {
     data: dreamCars,
     isLoading,
@@ -40,7 +43,11 @@ const DreamCarCard = () => {
           <div>
             {car.make} {car.model}
           </div>
-          <Button variant="outline" className="bg-bg2">
+          <Button
+            variant="outline"
+            className="bg-bg2"
+            onClick={() => router.push(`/Dream-Cars/${car.id.toString()}`)}
+          >
             View
           </Button>
         </CardTitle>
