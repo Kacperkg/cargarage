@@ -181,7 +181,15 @@ export default function CarDesc() {
           </CardHeader>
           <CardContent>
             <div className="text-muted-foreground">
-              {dreamCar.description ?? "No description provided"}
+              {dreamCar.description ? (
+                <div className="text-muted-foreground">
+                  {dreamCar.description}
+                </div>
+              ) : (
+                <div className="text-muted-foreground">
+                  No description provided
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>
