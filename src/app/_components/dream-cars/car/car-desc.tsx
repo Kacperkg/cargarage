@@ -181,7 +181,7 @@ export default function CarDesc() {
           </CardHeader>
           <CardContent>
             <div className="text-muted-foreground">
-              {dreamCar.description || "No description provided"}
+              {dreamCar.description ?? "No description provided"}
             </div>
           </CardContent>
         </Card>
@@ -195,7 +195,7 @@ export default function CarDesc() {
           <CardContent className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
               <Palette className="text-muted-foreground" />
-              Preferred Color: {dreamCar.color || "No color provided"}
+              Preferred Color: {dreamCar.color ?? "No color provided"}
             </div>
             <div className="flex items-center gap-2">
               <Bolt className="text-muted-foreground" />

@@ -4,10 +4,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "~/styles/globals.css";
 import { TRPCReactProvider } from "~/trpc/react";
 import { Toaster } from "~/components/ui/sonner";
-import { SidebarProvider, SidebarTrigger } from "~/components/ui/sidebar";
+import { SidebarProvider } from "~/components/ui/sidebar";
 import { AppSidebar } from "~/app/_components/app-sidebar";
-import { Separator } from "~/components/ui/separator";
-import GetPath from "./_components/get-path";
 import SidebarTriggerComponent from "./_components/sidebar-trigget";
 
 const geistSans = Geist({

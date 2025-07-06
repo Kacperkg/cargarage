@@ -1,5 +1,5 @@
 import { Card, CardHeader, CardTitle } from "~/components/ui/card";
-import { DotLoader } from "react-spinners";
+
 import { Skeleton } from "~/components/ui/skeleton";
 
 interface MetricCardProps {
