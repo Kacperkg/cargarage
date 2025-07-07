@@ -65,6 +65,26 @@ export interface MyCar {
   ownerId: string;
 }
 
+export type MyCarFormData = {
+  vin: string | null;
+  make: string;
+  model: string;
+  year: number;
+  mileage: number;
+  milesBoughtAt: number;
+  hp: number;
+  color: string | null;
+  description: string | null;
+  engineType: EngineType;
+  transmissionType: TransmissionType;
+  purchaseDate: Date;
+  licensePlate: string | null;
+  engine: string | null;
+  status: CarStatus;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 export interface ProjectCar {
   id: string;
   name: string;
