@@ -29,8 +29,8 @@ const DreamCarCard = () => {
 
   if (!dreamCars || dreamCars.length === 0) {
     return (
-      <div className="flex h-[80svh] items-center justify-center">
-        <p className="text-muted-foreground">No dream cars found</p>
+      <div className="col-span-3 flex h-[50svh] items-center justify-center">
+        <h1 className="text-2xl font-bold">Do you have no dream cars?</h1>
       </div>
     );
   }
