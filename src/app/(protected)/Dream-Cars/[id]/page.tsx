@@ -1,9 +1,9 @@
-import { Car } from "lucide-react";
 import CarInfo from "~/app/_components/dream-cars/car/car-info";
 import CarDesc from "~/app/_components/dream-cars/car/car-desc";
 import { DreamCarProvider } from "~/app/context/dream-car-context";
 import { use } from "react";
 import BackButton from "~/app/_components/dream-cars/car/back-button";
+import CarImage from "~/app/_components/dream-cars/car/car-image";
 
 export default function DreamCarPage({
   params,
@@ -19,20 +19,11 @@ export default function DreamCarPage({
 
         {/* HERO SECTION */}
 
-        {/* ADD IMAGE */}
-        <div className="mb-8">
-          <div className="bg-muted/50 mb-6 flex aspect-video items-center justify-center rounded-lg border-2 border-dashed">
-            <div className="text-center">
-              <Car className="text-muted-foreground mx-auto mb-4 h-24 w-24" />
-              <p className="text-muted-foreground">
-                Car image will appear here
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* CAR INFO */}
         <CarInfo />
+
+        {/* ADD IMAGE */}
+        <CarImage />
 
         {/* CAR DESCRIPTION */}
         <CarDesc />

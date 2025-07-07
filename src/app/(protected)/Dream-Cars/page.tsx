@@ -1,4 +1,4 @@
-import DreamCarCard from "../_components/dream-cars/dream-car-card";
+import DreamCarCard from "~/app/_components/dream-cars/dream-car-card";
 
 export default function DreamCarsPage() {
   return (

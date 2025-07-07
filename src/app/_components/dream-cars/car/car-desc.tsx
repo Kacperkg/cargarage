@@ -20,7 +20,7 @@ export default function CarDesc() {
 
   if (isLoading || !dreamCar) {
     return (
-      <section className="flex w-full gap-4">
+      <section className="flex w-full flex-col gap-4 lg:flex-row">
         <div className="flex basis-full flex-col gap-4">
           <Card className="bg-bg2 h-fit">
             <CardHeader>
@@ -141,7 +141,7 @@ export default function CarDesc() {
   }
 
   return (
-    <section className="flex w-full gap-4">
+    <section className="flex w-full flex-col gap-4 lg:flex-row">
       <div className="flex basis-full flex-col gap-4">
         <Card className="bg-bg2 h-fit">
           <CardHeader>

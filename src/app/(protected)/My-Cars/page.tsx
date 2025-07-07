@@ -1,4 +1,4 @@
-import MyCarsCard from "../_components/my-cars/my-car-card";
+import MyCarsCard from "~/app/_components/my-cars/my-car-card";
 import { Button } from "~/components/ui/button";
 import { Plus } from "lucide-react";
 

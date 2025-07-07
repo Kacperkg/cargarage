@@ -1,6 +1,6 @@
 "use client";
 
-import { Palette, Car, Gauge, Calendar, Settings, Plus } from "lucide-react";
+import { Palette, Car, Gauge, Calendar, Settings } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import {
   Card,

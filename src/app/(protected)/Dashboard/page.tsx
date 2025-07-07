@@ -1,8 +1,8 @@
 "use client";
 
-import MetricCardRow from "../_components/dashboard/metrics/metric-row";
-import QuickActions from "../_components/dashboard/quick-actions/quick-action";
-import FeaturedCards from "../_components/dashboard/featured-cards";
+import MetricCardRow from "~/app/_components/dashboard/metrics/metric-row";
+import QuickActions from "~/app/_components/dashboard/quick-actions/quick-action";
+import FeaturedCards from "~/app/_components/dashboard/featured-cards";
 import { useUser } from "@clerk/nextjs";
 import { api } from "~/trpc/react";
 import { useEffect } from "react";
