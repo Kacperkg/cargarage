@@ -26,31 +26,31 @@ const quickActions: QuickAction[] = [
     icon: <Heart className="h-5 w-5" />,
     color: "oklch(0.645 0.246 16.439)",
   },
-  {
-    title: "Projects",
-    icon: <Wrench className="h-5 w-5" />,
-    color: "oklch(0.769 0.188 70.08)",
-  },
-  {
-    title: "Road Trips",
-    icon: <Map className="h-5 w-5" />,
-    color: "oklch(0.488 0.243 264.376)",
-  },
-  {
-    title: "My Cars",
-    icon: <Car className="h-5 w-5" />,
-    color: "oklch(0.696 0.17 162.48)",
-  },
-  {
-    title: "Goals",
-    icon: <Target className="h-5 w-5" />,
-    color: "oklch(0.704 0.191 22.216)",
-  },
-  {
-    title: "Service Log",
-    icon: <FileText className="h-5 w-5" />,
-    color: "oklch(0.627 0.265 303.9)",
-  },
+  // {
+  //   title: "Projects",
+  //   icon: <Wrench className="h-5 w-5" />,
+  //   color: "oklch(0.769 0.188 70.08)",
+  // },
+  // {
+  //   title: "Road Trips",
+  //   icon: <Map className="h-5 w-5" />,
+  //   color: "oklch(0.488 0.243 264.376)",
+  // },
+  // {
+  //   title: "My Cars",
+  //   icon: <Car className="h-5 w-5" />,
+  //   color: "oklch(0.696 0.17 162.48)",
+  // },
+  // {
+  //   title: "Goals",
+  //   icon: <Target className="h-5 w-5" />,
+  //   color: "oklch(0.704 0.191 22.216)",
+  // },
+  // {
+  //   title: "Service Log",
+  //   icon: <FileText className="h-5 w-5" />,
+  //   color: "oklch(0.627 0.265 303.9)",
+  // },
 ];
 
 const QuickActions = () => {
