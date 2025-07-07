@@ -29,6 +29,7 @@ export interface User {
 }
 
 export interface DreamCar {
+  id: number;
   make: string;
   model: string;
   year: number;
@@ -43,20 +44,21 @@ export interface DreamCar {
 }
 
 export interface MyCar {
-  vin: string;
+  id: number;
+  vin: string | null;
   make: string;
   model: string;
   year: number;
   mileage: number;
   milesBoughtAt: number;
   hp: number;
-  color: string;
-  description: string;
+  color: string | null;
+  description: string | null;
   engineType: EngineType;
   transmissionType: TransmissionType;
   purchaseDate: Date;
-  licensePlate: string;
-  engine: string;
+  licensePlate: string | null;
+  engine: string | null;
   status: CarStatus;
   createdAt: Date;
   updatedAt: Date;

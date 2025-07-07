@@ -11,8 +11,10 @@ import {
 import { api } from "~/trpc/react";
 
 import CardSkeleton from "./card-skeleton";
+import { useRouter } from "next/navigation";
 
 export default function MyCarsCard() {
+  const router = useRouter();
   const {
     data: myCars,
     isLoading,
@@ -109,7 +111,10 @@ export default function MyCarsCard() {
               </Button>
             </div>
             <div className="w-full">
-              <Button className="bg-accent text-accent-foreground hover:bg-accent/50 w-full font-bold">
+              <Button
+                className="bg-accent text-accent-foreground hover:bg-accent/50 w-full font-bold"
+                onClick={() => router.push(`/My-Cars/${car.id}`)}
+              >
                 View
               </Button>
             </div>

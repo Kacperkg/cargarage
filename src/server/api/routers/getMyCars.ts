@@ -1,3 +1,4 @@
+import z from "zod";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 
 export const getMyCarsRouter = createTRPCRouter({
@@ -85,4 +86,32 @@ export const getMyCarsRouter = createTRPCRouter({
       throw new Error("Failed to calculate total mileage");
     }
   }),
+
+  getMyCarById: protectedProcedure
+    .input(z.string())
+    .query(async ({ ctx, input }) => {
+      try {
+        const { db, userId } = ctx;
+
+        if (!userId) {
+          throw new Error("User ID is required");
+        }
+
+        const myCar = await db.myCar.findUnique({
+          where: {
+            id: parseInt(input),
+            ownerId: userId,
+          },
+        });
+
+        if (!myCar) {
+          throw new Error("My car not found");
+        }
+
+        return myCar;
+      } catch (error) {
+        console.error("Error fetching my car by ID:", error);
+        throw new Error("Failed to fetch my car by ID");
+      }
+    }),
 });
