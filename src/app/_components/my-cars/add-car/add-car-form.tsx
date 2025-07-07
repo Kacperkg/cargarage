@@ -15,28 +15,28 @@ import { Button } from "~/components/ui/button";
 import { Calendar, Gauge, Hash } from "lucide-react";
 import { CarStatus, EngineType, TransmissionType } from "@prisma/client";
 import { Textarea } from "~/components/ui/textarea";
-import { type MyCar } from "~/utils/types";
+import { type MyCarFormData } from "~/utils/types";
 import { api } from "~/trpc/react";
 import { toast } from "sonner";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
 export default function AddCarForm() {
-  const [formData, setFormData] = useState<MyCar>({
-    vin: "",
+  const [formData, setFormData] = useState<MyCarFormData>({
+    vin: null,
     make: "",
     model: "",
     year: 0,
     mileage: 0,
     milesBoughtAt: 0,
     hp: 0,
-    color: "",
-    description: "",
+    color: null,
+    description: null,
     engineType: EngineType.GASOLINE,
     transmissionType: TransmissionType.MANUAL,
     purchaseDate: new Date(),
-    licensePlate: "",
-    engine: "",
+    licensePlate: null,
+    engine: null,
     status: CarStatus.Daily,
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -55,7 +55,7 @@ export default function AddCarForm() {
 
     try {
       createMyCar({
-        vin: formData.vin,
+        vin: formData.vin ?? "",
         make: formData.make,
         model: formData.model,
         year: formData.year,
@@ -116,7 +116,7 @@ export default function AddCarForm() {
                   id="vin"
                   name="vin"
                   placeholder="1HGBH41JXMN109186"
-                  value={formData.vin}
+                  value={formData.vin ?? ""}
                   onChange={(e) =>
                     setFormData({ ...formData, vin: e.target.value })
                   }
