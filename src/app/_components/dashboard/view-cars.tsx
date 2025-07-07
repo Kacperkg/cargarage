@@ -1,29 +1,26 @@
 import React from "react";
 import { Car } from "lucide-react";
+import { api } from "~/trpc/react";
+import { type MyCar } from "~/utils/types";
 
 const ViewCarsDisplay = () => {
-  const cars = [
-    { id: 1, make: "BMW", model: "M3", year: 2023, color: "Alpine White" },
-    {
-      id: 2,
-      make: "Porsche",
-      model: "911 GT3",
-      year: 2022,
-      color: "GT Silver",
-    },
-    {
-      id: 3,
-      make: "Ferrari",
-      model: "488 GTB",
-      year: 2021,
-      color: "Rosso Corsa",
-    },
-  ];
+  const { data: cars } = api.getMyCars.getMyCars.useQuery();
+
+  if (!cars || cars.length === 0) {
+    return (
+      <div className="space-y-4">
+        <div className="space-y-3">No cars found</div>
+        <p className="text-muted-foreground text-sm">
+          Manage your car collection, add new vehicles, and track modifications.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-4">
       <div className="space-y-3">
-        {cars.map((car) => (
+        {cars.slice(0, 8).map((car: MyCar) => (
           <div
             key={car.id}
             className="flex items-center gap-3 rounded-lg border p-3"

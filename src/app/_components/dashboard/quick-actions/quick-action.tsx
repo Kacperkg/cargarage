@@ -19,6 +19,7 @@ import AddServiceLogForm from "~/app/_components/dashboard/forms/add-service-log
 import ViewCarsDisplay from "~/app/_components/dashboard/view-cars";
 import QuickActionButtons from "~/app/_components/dashboard/quick-actions/quick-action-button";
 import type { QuickAction } from "~/utils/types";
+import { useRouter } from "next/navigation";
 
 const quickActions: QuickAction[] = [
   {
@@ -36,11 +37,11 @@ const quickActions: QuickAction[] = [
   //   icon: <Map className="h-5 w-5" />,
   //   color: "oklch(0.488 0.243 264.376)",
   // },
-  // {
-  //   title: "My Cars",
-  //   icon: <Car className="h-5 w-5" />,
-  //   color: "oklch(0.696 0.17 162.48)",
-  // },
+  {
+    title: "My Cars",
+    icon: <Car className="h-5 w-5" />,
+    color: "oklch(0.696 0.17 162.48)",
+  },
   // {
   //   title: "Goals",
   //   icon: <Target className="h-5 w-5" />,
@@ -54,6 +55,7 @@ const quickActions: QuickAction[] = [
 ];
 
 const QuickActions = () => {
+  const router = useRouter();
   const dialogConfigs = {
     "Add Dream Car": {
       title: "Add Dream Car",
@@ -119,7 +121,12 @@ const QuickActions = () => {
       title: "Your Garage",
       description: "List of your cars",
       form: <ViewCarsDisplay />,
-      submitButton: { text: "Manage Cars" },
+      submitButton: {
+        text: "Manage Cars",
+        onClick: () => {
+          router.push("/My-Cars");
+        },
+      },
     },
     Goals: {
       title: "Set New Goal",
