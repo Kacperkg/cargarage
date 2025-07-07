@@ -62,6 +62,7 @@ export interface MyCar {
   status: CarStatus;
   createdAt: Date;
   updatedAt: Date;
+  ownerId: string;
 }
 
 export interface ProjectCar {
