@@ -40,8 +40,6 @@ A comprehensive web application for car enthusiasts to track their vehicles, man
 
 ## Bugs to Fix
 
-- [ ] Fix when i clicking on mycar or dreamcar it will show you car not found (fix user detection if the user is the owner)
-
 ## Potential Improvements
 
 - [ ] Add dark mode support

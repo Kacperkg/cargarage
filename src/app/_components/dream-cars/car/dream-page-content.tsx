@@ -8,9 +8,9 @@ import CarImage from "./car-image";
 import CarDesc from "./car-desc";
 export default function DreamPageContent() {
   const { user, isLoaded } = useUser();
-  const { dreamCar } = useDreamCar();
+  const { dreamCar, isLoading } = useDreamCar();
 
-  if (isLoaded && dreamCar?.ownerId !== user?.id) {
+  if (isLoaded && dreamCar?.ownerId !== user?.id && !isLoading) {
     return (
       <section className="flex h-screen w-full max-w-screen-2xl flex-col items-center justify-center gap-4 px-2 sm:px-4 md:mx-auto lg:px-16">
         <BackButton />

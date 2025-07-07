@@ -7,9 +7,9 @@ import { useUser } from "@clerk/nextjs";
 
 export default function MyCarPageContent() {
   const { user, isLoaded } = useUser();
-  const { myCar } = useMyCar();
+  const { myCar, isLoading } = useMyCar();
 
-  if (isLoaded && myCar?.ownerId !== user?.id) {
+  if (isLoaded && myCar?.ownerId !== user?.id && !isLoading) {
     return (
       <section className="flex h-screen w-full max-w-screen-2xl flex-col items-center justify-center gap-4 px-2 sm:px-4 md:mx-auto lg:px-16">
         <BackButton />
