@@ -81,17 +81,32 @@ const DeleteCar = ({ id }: { id: number }) => {
   const utils = api.useUtils();
 
   const { mutate: deleteDreamCar, isPending } =
-    api.deleteDreamCar.deleteDreamCar.useMutation();
+    api.deleteDreamCar.deleteDreamCar.useMutation({
+      onMutate: async ({ id }) => {
+        await utils.getDreamCar.getDreamCar.cancel();
+        const previous = utils.getDreamCar.getDreamCar.getData();
+        utils.getDreamCar.getDreamCar.setData(undefined, (old) =>
+          old?.filter((c) => c.id !== id),
+        );
+        return { previous };
+      },
+      onSuccess: () => {
+        toast.success("Car deleted successfully");
+        router.push("/Dream-Cars");
+      },
+      onError: (err, _vars, context) => {
+        if (context?.previous) {
+          utils.getDreamCar.getDreamCar.setData(undefined, context.previous);
+        }
+        toast.error(err.message);
+      },
+      onSettled: () => {
+        utils.getDreamCar.getDreamCar.invalidate();
+      },
+    });
 
-  const handleDelete = () => {
-    try {
-      deleteDreamCar({ id });
-      toast.success("Car deleted successfully");
-      utils.getDreamCar.getDreamCar.invalidate();
-      router.push("/Dream-Cars");
-    } catch (error) {
-      toast.error(error as string);
-    }
+  const handleDelete = async () => {
+    await deleteDreamCar({ id });
   };
 
   return (

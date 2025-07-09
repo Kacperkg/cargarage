@@ -38,7 +38,9 @@ A comprehensive web application for car enthusiasts to track their vehicles, man
 - [ ] Add documentation
 - [ ] Add Breadcrumbs properly
 
-## Bugs to Fix
+- [ ] Reformat code into smaller componments and make it more maintainable
+
+## Bugs to Fix (as i find them)
 
 ## Potential Improvements
 

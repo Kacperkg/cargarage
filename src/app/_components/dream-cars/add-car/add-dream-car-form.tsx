@@ -21,6 +21,7 @@ import { useRouter } from "next/navigation";
 
 export default function AddDreamCarForm() {
   const router = useRouter();
+  const utils = api.useUtils();
   const [formData, setFormData] = useState<DreamCarFormData>({
     make: "",
     model: "",
@@ -43,26 +44,29 @@ export default function AddDreamCarForm() {
   };
 
   const { mutate: createDreamCar, isPending } =
-    api.createDreamCar.createDreamCar.useMutation();
-
-  const utils = api.useUtils();
+    api.createDreamCar.createDreamCar.useMutation({
+      onSuccess: async () => {
+        await utils.getDreamCar.getDreamCar.invalidate();
+        toast.success("Dream car added successfully!");
+        router.push("/Dream-Cars");
+      },
+      onError: (err) => {
+        toast.error("Failed to add dream car. Please try again.");
+      },
+    });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      createDreamCar({
-        ...formData,
-        color: formData.color ?? "",
-        description: formData.description ?? "",
-        engineType: formData.engineType,
-        transmissionType: formData.transmissionType,
-      });
-      utils.getDreamCar.getDreamCar.invalidate();
-      toast.success("Dream car added successfully!");
-      router.push("/Dream-Cars");
-    } catch (error) {
-      toast.error("Failed to add dream car. Please try again.");
-    }
+    createDreamCar({
+      make: formData.make,
+      model: formData.model,
+      year: formData.year,
+      hp: formData.hp,
+      engineType: formData.engineType,
+      transmissionType: formData.transmissionType,
+      color: formData.color ?? "",
+      description: formData.description ?? "",
+    });
   };
 
   return (
@@ -181,7 +185,7 @@ export default function AddDreamCarForm() {
                   <SelectItem value="AUTOMATIC">Automatic</SelectItem>
                   <SelectItem value="CVT">CVT</SelectItem>
                   <SelectItem value="DCT">DCT</SelectItem>
-                  <SelectItem value="SEMI_AUTO">Semi-Automatic</SelectItem>
+                  <SelectItem value="SEMI_AUTOMATIC">Semi-Automatic</SelectItem>
                 </SelectContent>
               </Select>
             </div>
