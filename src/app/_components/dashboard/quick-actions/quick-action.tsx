@@ -1,4 +1,4 @@
-import { Car, Heart, Wrench, Map, Target, FileText, Plus } from "lucide-react";
+import { Car, Heart, Plus } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,

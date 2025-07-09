@@ -1,5 +1,5 @@
 "use client";
-import { Heart, Pencil, Trash } from "lucide-react";
+import { Pencil, Trash } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { Skeleton } from "~/components/ui/skeleton";
 import { useMyCar } from "~/app/context/my-car-context";

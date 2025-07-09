@@ -100,13 +100,13 @@ const DeleteCar = ({ id }: { id: number }) => {
         }
         toast.error(err.message);
       },
-      onSettled: () => {
-        utils.getDreamCar.getDreamCar.invalidate();
+      onSettled: async () => {
+        await utils.getDreamCar.getDreamCar.invalidate();
       },
     });
 
-  const handleDelete = async () => {
-    await deleteDreamCar({ id });
+  const handleDelete = () => {
+    deleteDreamCar({ id });
   };
 
   return (
