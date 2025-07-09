@@ -5,6 +5,7 @@ import { createProjectCarRouter } from "./routers/createProjectCars";
 import { getDreamCarRouter } from "./routers/getDreamCar";
 import { getMyCarsRouter } from "./routers/getMyCars";
 import { createMyCarsRouter } from "./routers/createMyCars";
+import { deleteDreamCarRouter } from "./routers/deleteDreamCar";
 
 /**
  * This is the primary router for your server.
@@ -18,6 +19,7 @@ export const appRouter = createTRPCRouter({
   getDreamCar: getDreamCarRouter,
   getMyCars: getMyCarsRouter,
   createMyCar: createMyCarsRouter,
+  deleteDreamCar: deleteDreamCarRouter,
 });
 
 // export type definition of API

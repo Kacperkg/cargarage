@@ -1,13 +1,10 @@
+import AddDreamCarForm from "~/app/_components/dream-cars/add-car/add-dream-car-form";
 import BackButton from "~/app/_components/dream-cars/car/back-button";
 
 export default function AddDreamCarPage() {
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center">
-      <h2 className="text-muted-foreground text-2xl">
-        Go to dashboard to add a dream car this part is still under development
-        😅
-      </h2>
-      <BackButton />
+    <div className="mt-10 flex h-screen w-full flex-col gap-4 px-2 sm:px-4 md:mx-auto lg:px-16">
+      <AddDreamCarForm />
     </div>
   );
 }

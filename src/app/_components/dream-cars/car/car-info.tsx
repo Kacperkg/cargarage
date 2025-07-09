@@ -3,10 +3,23 @@ import { Heart, Pencil, Trash } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { Skeleton } from "~/components/ui/skeleton";
 import { useDreamCar } from "~/app/context/dream-car-context";
+import {
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  AlertDialogAction,
+} from "~/components/ui/alert-dialog";
+import { AlertDialog } from "~/components/ui/alert-dialog";
+import { api } from "~/trpc/react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function CarInfo() {
   const { dreamCar, isLoading } = useDreamCar();
-
   if (isLoading || !dreamCar) {
     return (
       <>
@@ -55,12 +68,59 @@ export default function CarInfo() {
             <Pencil />
             Edit
           </Button>
-          <Button variant="destructive" className="bg-red-500/20 text-red-400">
-            <Trash />
-            Delete
-          </Button>
+          <DeleteCar id={dreamCar.id} />
         </div>
       </div>
     </>
   );
 }
+
+const DeleteCar = ({ id }: { id: number }) => {
+  const router = useRouter();
+
+  const utils = api.useUtils();
+
+  const { mutate: deleteDreamCar, isPending } =
+    api.deleteDreamCar.deleteDreamCar.useMutation();
+
+  const handleDelete = () => {
+    try {
+      deleteDreamCar({ id });
+      toast.success("Car deleted successfully");
+      utils.getDreamCar.getDreamCar.invalidate();
+      router.push("/Dream-Cars");
+    } catch (error) {
+      toast.error(error as string);
+    }
+  };
+
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button variant="destructive" className="bg-red-500/20 text-red-400">
+          <Trash />
+          Delete
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Delete Car</AlertDialogTitle>
+          <AlertDialogDescription>
+            Are you sure you want to delete this car?
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction
+            className="bg-red-500/20 text-red-400"
+            onClick={handleDelete}
+            disabled={isPending}
+          >
+            <Trash />
+            Delete
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+};
