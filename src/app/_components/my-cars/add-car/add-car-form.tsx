@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
@@ -18,10 +18,12 @@ import { Textarea } from "~/components/ui/textarea";
 import { type MyCarFormData } from "~/utils/types";
 import { api } from "~/trpc/react";
 import { toast } from "sonner";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function AddCarForm() {
+  const router = useRouter();
+  const utils = api.useUtils();
   const [formData, setFormData] = useState<MyCarFormData>({
     vin: null,
     make: "",
@@ -42,51 +44,38 @@ export default function AddCarForm() {
     updatedAt: new Date(),
   });
 
-  const {
-    mutate: createMyCar,
-    isError,
-    isPending,
-    isSuccess,
-    error,
-  } = api.createMyCar.createMyCar.useMutation();
+  const { mutate: createMyCar, isPending } =
+    api.createMyCar.createMyCar.useMutation({
+      onSuccess: async () => {
+        await utils.getMyCars.getMyCars.invalidate();
+        toast.success("Car added successfully");
+        router.push("/My-Cars");
+      },
+      onError: (err) => {
+        toast.error(err.message);
+      },
+    });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    try {
-      createMyCar({
-        vin: formData.vin ?? "",
-        make: formData.make,
-        model: formData.model,
-        year: formData.year,
-        mileage: formData.mileage,
-        milesBoughtAt: formData.milesBoughtAt,
-        hp: formData.hp,
-        color: formData.color ?? "",
-        description: formData.description ?? "",
-        engineType: formData.engineType,
-        transmissionType: formData.transmissionType,
-        licensePlate: formData.licensePlate ?? "",
-        engine: formData.engine ?? "",
-        status: formData.status,
-        purchaseDate: new Date(formData.purchaseDate),
-      });
-    } catch (e) {
-      toast.error("Error adding car");
-      console.error(e);
-    }
+    createMyCar({
+      vin: formData.vin ?? "",
+      make: formData.make,
+      model: formData.model,
+      year: formData.year,
+      mileage: formData.mileage,
+      milesBoughtAt: formData.milesBoughtAt,
+      hp: formData.hp,
+      color: formData.color ?? "",
+      description: formData.description ?? "",
+      engineType: formData.engineType,
+      transmissionType: formData.transmissionType,
+      licensePlate: formData.licensePlate ?? "",
+      engine: formData.engine ?? "",
+      status: formData.status,
+      purchaseDate: new Date(formData.purchaseDate),
+    });
   };
-
-  useEffect(() => {
-    if (isSuccess) {
-      toast.success("Car added successfully");
-      redirect("/My-Cars");
-    }
-    if (isError) {
-      toast.error("Error adding car");
-      console.error(error?.message);
-    }
-  }, [isSuccess, isError, error]);
 
   return (
     <div className="mx-auto w-full">

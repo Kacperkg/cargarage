@@ -80,7 +80,7 @@ export default function MyCarInfo() {
               className="bg-red-500/20 text-red-400"
             >
               <Trash />
-              Sell
+              Sold
             </Button>
           )}
         </div>

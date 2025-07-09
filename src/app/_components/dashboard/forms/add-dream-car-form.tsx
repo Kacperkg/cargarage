@@ -36,27 +36,24 @@ const AddDreamCarForm = () => {
     }));
   };
 
-  const createDreamCar = api.createDreamCar.createDreamCar.useMutation();
+  const createDreamCar = api.createDreamCar.createDreamCar.useMutation({
+    onSuccess: () => {
+      toast.success("Dream car added successfully!");
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    createDreamCar.mutate(
-      {
-        ...formData,
-        color: formData.color ?? "",
-        description: formData.description ?? "",
-        engineType: formData.engineType,
-        transmissionType: formData.transmissionType,
-      },
-      {
-        onSuccess: () => {
-          toast.success("Dream car added successfully!");
-        },
-        onError: () => {
-          toast.error("Failed to add dream car. Please try again.");
-        },
-      },
-    );
+    createDreamCar.mutate({
+      ...formData,
+      color: formData.color ?? "",
+      description: formData.description ?? "",
+      engineType: formData.engineType,
+      transmissionType: formData.transmissionType,
+    });
   };
 
   return (

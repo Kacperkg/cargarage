@@ -51,7 +51,7 @@ export default function AddDreamCarForm() {
         router.push("/Dream-Cars");
       },
       onError: (err) => {
-        toast.error("Failed to add dream car. Please try again.");
+        toast.error(err.message);
       },
     });
 
