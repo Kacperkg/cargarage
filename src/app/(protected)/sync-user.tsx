@@ -34,4 +34,6 @@ export default function SyncUser() {
     createUserMutation.isSuccess,
     createUserMutation.isError,
   ]);
+
+  return null;
 }
