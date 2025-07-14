@@ -47,3 +47,4 @@ A comprehensive web application for car enthusiasts to track their vehicles, man
 - [ ] Add dark mode support
 - [ ] Improve accessibility features
 - [ ] Implement rate limiting
+.
