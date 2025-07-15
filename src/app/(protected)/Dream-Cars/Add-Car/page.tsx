@@ -1,4 +1,4 @@
-import AddDreamCarForm from "~/app/_components/dream-cars/add-car/add-dream-car-form";
+import AddDreamCarForm from "../_components/add-car/add-dream-car-form";
 
 export default function AddDreamCarPage() {
   return (

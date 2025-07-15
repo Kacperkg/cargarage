@@ -3,6 +3,19 @@ import { Pencil, Trash } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { Skeleton } from "~/components/ui/skeleton";
 import { useMyCar } from "~/app/context/my-car-context";
+import { api } from "~/trpc/react";
+import { toast } from "sonner";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "~/components/ui/alert-dialog";
 
 export default function MyCarInfo() {
   const { myCar, isLoading } = useMyCar();
@@ -74,17 +87,57 @@ export default function MyCarInfo() {
             <Pencil />
             Edit
           </Button>
-          {myCar.status !== "Sold" && (
-            <Button
-              variant="destructive"
-              className="bg-red-500/20 text-red-400"
-            >
-              <Trash />
-              Sold
-            </Button>
-          )}
+          {myCar.status !== "Sold" && <SellCarButton id={myCar.id} />}
         </div>
       </div>
     </>
   );
 }
+
+const SellCarButton = ({ id }: { id: number }) => {
+  const utils = api.useUtils();
+
+  const { mutate: sellCar, isPending } = api.sellMyCar.sellMyCar.useMutation({
+    onSuccess: async () => {
+      toast.success("Car set as Sold");
+      await utils.invalidate();
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
+
+  const handleSell = () => {
+    sellCar({ id });
+  };
+
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button variant="destructive" className="bg-red-500/20 text-red-400">
+          <Trash />
+          Sell
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Delete Car</AlertDialogTitle>
+          <AlertDialogDescription>
+            Are you sure you want to set this as sold?
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction
+            className="bg-red-500/20 text-red-400"
+            onClick={handleSell}
+            disabled={isPending}
+          >
+            <Trash />
+            Sell
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+};

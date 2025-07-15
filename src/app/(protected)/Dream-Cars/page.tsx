@@ -1,5 +1,5 @@
-import DreamCarCard from "~/app/_components/dream-cars/dream-car-card";
-import AddCarButton from "~/app/_components/dream-cars/add-car-button";
+import DreamCarCard from "./_components/dream-car-card";
+import AddCarButton from "./_components/add-car-button";
 
 export default function DreamCarsPage() {
   return (

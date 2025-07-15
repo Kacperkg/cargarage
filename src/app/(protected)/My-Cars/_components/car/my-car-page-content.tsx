@@ -1,9 +1,9 @@
-import BackButton from "../../dream-cars/car/back-button";
+import BackButton from "./back-button";
 import MyCarInfo from "./my-car-info";
-import CarImage from "../../dream-cars/car/car-image";
+import CarImage from "./car-image";
 import MyCarDesc from "./my-car-desc";
 import { useMyCar } from "~/app/context/my-car-context";
-import { useUser } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs"
 
 export default function MyCarPageContent() {
   const { user, isLoaded } = useUser();
