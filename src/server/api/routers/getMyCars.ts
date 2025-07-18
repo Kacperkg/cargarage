@@ -20,7 +20,23 @@ export const getMyCarsRouter = createTRPCRouter({
         return [];
       }
 
-      return myCars;
+      // Custom status ordering
+      const statusOrder = [
+        "Daily",
+        "Summer",
+        "Winter",
+        "Track",
+        "Show",
+        "Garage",
+        "Project",
+        "Sold",
+      ];
+
+      return myCars.sort((a, b) => {
+        const aIndex = statusOrder.indexOf(a.status);
+        const bIndex = statusOrder.indexOf(b.status);
+        return aIndex - bIndex;
+      });
     } catch (error) {
       console.error("Error fetching user cars:", error);
       throw new Error("Failed to fetch user cars");
@@ -38,6 +54,9 @@ export const getMyCarsRouter = createTRPCRouter({
       const myCars = await db.myCar.aggregate({
         where: {
           ownerId: userId,
+          status: {
+            not: "Sold",
+          },
         },
         _sum: {
           hp: true,
