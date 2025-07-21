@@ -64,8 +64,8 @@ export default function AddDreamCarForm() {
       hp: formData.hp,
       engineType: formData.engineType,
       transmissionType: formData.transmissionType,
-      color: formData.color ?? "",
-      description: formData.description ?? "",
+      color: formData.color ?? undefined,
+      description: formData.description ?? undefined,
     });
   };
 

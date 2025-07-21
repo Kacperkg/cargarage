@@ -16,9 +16,11 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "~/components/ui/alert-dialog";
+import { useRouter } from "next/navigation";
 
 export default function MyCarInfo() {
   const { myCar, isLoading } = useMyCar();
+  const router = useRouter();
 
   if (isLoading || !myCar) {
     return (
@@ -83,7 +85,12 @@ export default function MyCarInfo() {
           </div>
         </div>
         <div className="flex flex-row gap-2">
-          <Button variant="outline">
+          <Button
+            variant="outline"
+            onClick={() =>
+              router.push(`/My-Cars/${myCar.id.toString()}/Edit-Car`)
+            }
+          >
             <Pencil />
             Edit
           </Button>

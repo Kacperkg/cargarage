@@ -59,19 +59,19 @@ export default function AddCarForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     createMyCar({
-      vin: formData.vin ?? "",
+      vin: formData.vin ?? undefined,
       make: formData.make,
       model: formData.model,
       year: formData.year,
       mileage: formData.mileage,
       milesBoughtAt: formData.milesBoughtAt,
       hp: formData.hp,
-      color: formData.color ?? "",
-      description: formData.description ?? "",
+      color: formData.color ?? undefined,
+      description: formData.description ?? undefined,
       engineType: formData.engineType,
       transmissionType: formData.transmissionType,
-      licensePlate: formData.licensePlate ?? "",
-      engine: formData.engine ?? "",
+      licensePlate: formData.licensePlate ?? undefined,
+      engine: formData.engine ?? undefined,
       status: formData.status,
       purchaseDate: new Date(formData.purchaseDate),
     });

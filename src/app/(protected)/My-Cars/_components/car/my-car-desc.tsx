@@ -175,15 +175,13 @@ export default function MyCarDesc() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-muted-foreground">
-              {myCar.description ? (
-                <div className="text-muted-foreground">{myCar.description}</div>
-              ) : (
-                <div className="text-muted-foreground">
-                  No description provided
-                </div>
-              )}
-            </div>
+            {myCar.description ? (
+              <div className="text-muted-foreground">{myCar.description}</div>
+            ) : (
+              <div className="text-muted-foreground">
+                No description provided
+              </div>
+            )}
           </CardContent>
         </Card>
         <Card className="bg-bg2 h-fit">
