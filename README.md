@@ -30,6 +30,15 @@ A comprehensive web application for car enthusiasts to track their vehicles, man
 
 # Project Todo List
 
+# REMINDER FOR ME
+
+- [ ] Make sure when making forms its said thing OR NULL not empty string
+- [ ] Cancel button on edit car to route back to the car youre editing not my cars list
+- [ ] Improve design of edit car page but not top priority
+- [ ] Make sure only the owner can edit
+- [ ] input validate everywhere basically double check and implement where required
+- [ ] folder rename to lower case for easier navigation via link
+
 ## Core Features Left to do
 
 - [ ] Add form validation
@@ -47,4 +56,4 @@ A comprehensive web application for car enthusiasts to track their vehicles, man
 - [ ] Add dark mode support
 - [ ] Improve accessibility features
 - [ ] Implement rate limiting
-.
+      .
