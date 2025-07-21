@@ -38,6 +38,9 @@ A comprehensive web application for car enthusiasts to track their vehicles, man
 - [ ] Make sure only the owner can edit
 - [ ] input validate everywhere basically double check and implement where required
 - [ ] folder rename to lower case for easier navigation via link
+- [ ] Image show case scaling issue on resize or on button press?
+
+- [ ] Break down code even further
 
 ## Core Features Left to do
 
