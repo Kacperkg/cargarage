@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useReducer, useState, type FormEvent } from "react";
+import React, { useEffect, useReducer, type FormEvent } from "react";
 import ImageShowcase from "../image-show-case";
 import BasicInfo from "../basic/basic-info";
 import PerformanceInfo from "../performance/performance-info";
@@ -11,9 +11,13 @@ import type { EditCarInput } from "~/utils/types";
 import formReducer from "../util/form-reducer";
 import { FormReducerActionKind } from "../util/form-reducer";
 import type { MyCar } from "~/utils/types";
+import { api } from "~/trpc/react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function EditCarFormContent({ myCar }: { myCar: MyCar }) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
+  const utils = api.useUtils();
   const [formData, dispatch] = useReducer(formReducer, {
     id: myCar.id,
     make: myCar.make,
@@ -33,9 +37,22 @@ export default function EditCarFormContent({ myCar }: { myCar: MyCar }) {
     }
   }, [myCar]);
 
+  const { mutate: editCar, isPending } = api.createMyCar.editMyCar.useMutation({
+    onSuccess: async () => {
+      await utils.getMyCars.getMyCarById.invalidate();
+      toast.success("Car edited successfully");
+      router.push(`/My-Cars/${formData.id}`);
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    editCar({
+      ...formData,
+    });
   };
 
   const updateField = (
@@ -57,7 +74,7 @@ export default function EditCarFormContent({ myCar }: { myCar: MyCar }) {
       <BasicInfo updateField={updateField} formData={formData} />
       <PerformanceInfo updateField={updateField} formData={formData} />
       <OwnershipInfo updateField={updateField} formData={formData} />
-      <FormAction isPending={isSubmitting} />
+      <FormAction isPending={isPending} />
     </form>
   );
 }
