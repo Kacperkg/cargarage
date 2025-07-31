@@ -5,16 +5,24 @@ import { Button } from "~/components/ui/button";
 import { useRouter } from "next/navigation";
 
 interface FormActionProps {
-  isPending: boolean;
+  isPending?: boolean;
 }
 
-const FormAction = () => {
+const FormAction = ({ isPending = false }: FormActionProps) => {
   const router = useRouter();
-  const isPending = false;
+
+  const handleCancel = () => {
+    router.back();
+  };
 
   return (
     <div className="flex justify-end gap-3 pt-4">
-      <Button variant="outline" type="button" onClick={() => router.back()}>
+      <Button
+        variant="outline"
+        type="button"
+        onClick={handleCancel}
+        disabled={isPending}
+      >
         Cancel
       </Button>
       <Button
@@ -22,7 +30,7 @@ const FormAction = () => {
         className="bg-primary hover:bg-primary/90"
         disabled={isPending}
       >
-        {isPending ? "Updating Car..." : "Add Car to Garage"}
+        {isPending ? "Editing..." : "Edit Car"}
       </Button>
     </div>
   );

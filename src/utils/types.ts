@@ -10,7 +10,6 @@ import {
   type ProjectStatus,
   CarStatus,
 } from "@prisma/client";
-import BasicInfo from "~/app/(protected)/My-Cars/[id]/Edit-Car/_components/basic-info";
 
 export type DreamCarFormData = {
   make: string;
@@ -169,20 +168,20 @@ export type QuickAction = {
 export const editCarSchema = z.object({
   id: z.number(),
   vin: z.string().optional(),
-  make: z.string().optional(),
-  model: z.string().optional(),
-  year: z.number().optional(),
+  make: z.string(),
+  model: z.string(),
+  year: z.number(),
   mileage: z.number().optional(),
   milesBoughtAt: z.number().optional(),
   hp: z.number().optional(),
   color: z.string().optional(),
   description: z.string().optional(),
-  engineType: z.nativeEnum(EngineType).optional(),
-  transmissionType: z.nativeEnum(TransmissionType).optional(),
+  engineType: z.nativeEnum(EngineType),
+  transmissionType: z.nativeEnum(TransmissionType),
   purchaseDate: z.date().optional(),
   licensePlate: z.string().optional(),
   engine: z.string().optional(),
-  status: z.nativeEnum(CarStatus).optional(),
+  status: z.nativeEnum(CarStatus),
 });
 
 export type EditCarInput = z.infer<typeof editCarSchema>;

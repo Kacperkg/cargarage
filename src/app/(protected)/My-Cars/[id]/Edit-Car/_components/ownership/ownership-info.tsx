@@ -18,8 +18,10 @@ import { useMyCar } from "~/app/context/my-car-context";
 import type { EditCarInput } from "~/utils/types";
 
 export default function OwnershipInfo({
+  formData,
   updateField,
 }: {
+  formData: EditCarInput;
   updateField: (
     field: keyof EditCarInput,
     value: string | number | Date | undefined,
@@ -45,6 +47,11 @@ export default function OwnershipInfo({
             <Label htmlFor="purchaseDate">Purchase Date</Label>
             <Input
               type="date"
+              value={
+                formData.purchaseDate instanceof Date
+                  ? formData.purchaseDate.toISOString().split("T")[0]
+                  : formData.purchaseDate
+              }
               onChange={(e) =>
                 updateField(
                   "purchaseDate",
@@ -57,6 +64,7 @@ export default function OwnershipInfo({
             <Label htmlFor="status">Status *</Label>
             <Select
               name="status"
+              value={formData.status}
               onValueChange={(value) => updateField("status", value)}
             >
               <SelectTrigger className="w-full">
@@ -74,6 +82,7 @@ export default function OwnershipInfo({
           <div className="space-y-2 md:col-span-3">
             <Label htmlFor="description">Description/Notes</Label>
             <Textarea
+              value={formData.description}
               id="description"
               name="description"
               placeholder="Special modifications, notes..."

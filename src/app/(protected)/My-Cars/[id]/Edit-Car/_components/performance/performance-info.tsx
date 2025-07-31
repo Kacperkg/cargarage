@@ -13,7 +13,6 @@ import {
 } from "~/components/ui/select";
 import { Gauge } from "lucide-react";
 import { EngineType, TransmissionType } from "@prisma/client";
-import { useMyCar } from "~/app/context/my-car-context";
 import type { EditCarInput } from "~/utils/types";
 
 export default function PerformanceInfo({
@@ -26,12 +25,6 @@ export default function PerformanceInfo({
     value: string | number | Date | undefined,
   ) => void;
 }) {
-  const { myCar, isLoading } = useMyCar();
-
-  if (isLoading || !myCar) {
-    return <div>Error loading</div>;
-  }
-
   return (
     <Card className="bg-bg2">
       <CardHeader>
@@ -52,16 +45,17 @@ export default function PerformanceInfo({
               placeholder={"Enter Engine"}
             />
           </div>
+          {/* Engine */}
           <div className="space-y-2">
             <Label htmlFor="engineType">Engine Type *</Label>
             <Select
               required
+              value={formData.engineType}
               name="engineType"
-              value={formData.engineType ?? ""}
               onValueChange={(value) => updateField("engineType", value)}
             >
               <SelectTrigger className="w-full">
-                <SelectValue placeholder={"Engine Type"} />
+                <SelectValue placeholder={formData.engineType} />
               </SelectTrigger>
               <SelectContent>
                 {Object.values(EngineType).map((type) => (
@@ -72,15 +66,17 @@ export default function PerformanceInfo({
               </SelectContent>
             </Select>
           </div>
+          {/* Transmission */}
           <div className="space-y-2">
             <Label htmlFor="transmissionType">Transmission *</Label>
             <Select
+              required
+              value={formData.transmissionType}
               name="transmissionType"
-              value={formData.transmissionType ?? ""}
               onValueChange={(value) => updateField("transmissionType", value)}
             >
               <SelectTrigger className="w-full">
-                <SelectValue placeholder={myCar.transmissionType} />
+                <SelectValue placeholder={formData.transmissionType} />
               </SelectTrigger>
               <SelectContent>
                 {Object.values(TransmissionType).map((type) => (
