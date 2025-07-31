@@ -15,8 +15,16 @@ import { Calendar } from "lucide-react";
 import { CarStatus } from "@prisma/client";
 import { Textarea } from "~/components/ui/textarea";
 import { useMyCar } from "~/app/context/my-car-context";
+import type { EditCarInput } from "~/utils/types";
 
-const OwnershipInfo = () => {
+export default function OwnershipInfo({
+  updateField,
+}: {
+  updateField: (
+    field: keyof EditCarInput,
+    value: string | number | Date | undefined,
+  ) => void;
+}) {
   const { myCar, isLoading } = useMyCar();
 
   if (isLoading || !myCar) {
@@ -35,11 +43,22 @@ const OwnershipInfo = () => {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           <div className="space-y-2">
             <Label htmlFor="purchaseDate">Purchase Date</Label>
-            <Input type="date" />
+            <Input
+              type="date"
+              onChange={(e) =>
+                updateField(
+                  "purchaseDate",
+                  e.target.value ? new Date(e.target.value) : undefined,
+                )
+              }
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="status">Status *</Label>
-            <Select name="status" required>
+            <Select
+              name="status"
+              onValueChange={(value) => updateField("status", value)}
+            >
               <SelectTrigger className="w-full">
                 <SelectValue placeholder={myCar.status} />
               </SelectTrigger>
@@ -58,12 +77,11 @@ const OwnershipInfo = () => {
               id="description"
               name="description"
               placeholder="Special modifications, notes..."
+              onChange={(e) => updateField("description", e.target.value)}
             />
           </div>
         </div>
       </CardContent>
     </Card>
   );
-};
-
-export default OwnershipInfo;
+}

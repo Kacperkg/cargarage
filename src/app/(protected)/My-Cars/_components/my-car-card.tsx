@@ -103,10 +103,11 @@ export default function MyCarsCard() {
               <Button
                 variant="outline"
                 className="w-full border-2 hover:bg-black/10"
+                onClick={() => router.push(`/My-Cars/${car.id}/Edit-Car`)}
               >
                 <div className="flex flex-row items-center gap-2">
                   <Settings className="h-4 w-4" />
-                  <h1 className="font-bold">Manage</h1>
+                  <h1 className="font-bold">Edit</h1>
                 </div>
               </Button>
             </div>

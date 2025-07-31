@@ -1,12 +1,16 @@
+import { z } from "zod";
+
 import type { ReactNode } from "react";
-import type {
-  ProjectType,
-  Priority,
+
+import {
+  type ProjectType,
+  type Priority,
   EngineType,
   TransmissionType,
-  ProjectStatus,
+  type ProjectStatus,
   CarStatus,
 } from "@prisma/client";
+import BasicInfo from "~/app/(protected)/My-Cars/[id]/Edit-Car/_components/basic-info";
 
 export type DreamCarFormData = {
   make: string;
@@ -161,3 +165,24 @@ export type QuickAction = {
   icon: ReactNode;
   color: string;
 };
+
+export const editCarSchema = z.object({
+  id: z.number(),
+  vin: z.string().optional(),
+  make: z.string().optional(),
+  model: z.string().optional(),
+  year: z.number().optional(),
+  mileage: z.number().optional(),
+  milesBoughtAt: z.number().optional(),
+  hp: z.number().optional(),
+  color: z.string().optional(),
+  description: z.string().optional(),
+  engineType: z.nativeEnum(EngineType).optional(),
+  transmissionType: z.nativeEnum(TransmissionType).optional(),
+  purchaseDate: z.date().optional(),
+  licensePlate: z.string().optional(),
+  engine: z.string().optional(),
+  status: z.nativeEnum(CarStatus).optional(),
+});
+
+export type EditCarInput = z.infer<typeof editCarSchema>;

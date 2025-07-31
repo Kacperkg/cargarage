@@ -1,22 +1,16 @@
 "use client";
 
 import React from "react";
-
 import { Button } from "~/components/ui/button";
-
-import { api } from "~/trpc/react";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+
+interface FormActionProps {
+  isPending: boolean;
+}
 
 const FormAction = () => {
   const router = useRouter();
-
-  const { mutate: createMyCar, isPending } =
-    api.createMyCar.createMyCar.useMutation({
-      onError: (err) => {
-        toast.error(err.message);
-      },
-    });
+  const isPending = false;
 
   return (
     <div className="flex justify-end gap-3 pt-4">
@@ -28,7 +22,7 @@ const FormAction = () => {
         className="bg-primary hover:bg-primary/90"
         disabled={isPending}
       >
-        {isPending ? "Adding Car..." : "Add Car to Garage"}
+        {isPending ? "Updating Car..." : "Add Car to Garage"}
       </Button>
     </div>
   );

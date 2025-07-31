@@ -33,11 +33,10 @@ A comprehensive web application for car enthusiasts to track their vehicles, man
 # REMINDER FOR ME
 
 - [ ] Make sure when making forms its said thing OR NULL not empty string
-- [ ] Cancel button on edit car to route back to the car youre editing not my cars list
 - [ ] Improve design of edit car page but not top priority
 - [ ] Make sure only the owner can edit
 - [ ] input validate everywhere basically double check and implement where required
-- [ ] folder rename to lower case for easier navigation via link
+- [ ] folder rename to lower case for easier navigation via link and then change bread crumbs to load and while loading just capitalize it
 - [ ] Image show case scaling issue on resize or on button press?
 
 - [ ] Break down code even further
@@ -52,11 +51,8 @@ A comprehensive web application for car enthusiasts to track their vehicles, man
 
 - [ ] Reformat code into smaller componments and make it more maintainable
 
-## Bugs to Fix (as i find them)
-
 ## Potential Improvements
 
 - [ ] Add dark mode support
 - [ ] Improve accessibility features
 - [ ] Implement rate limiting
-      .

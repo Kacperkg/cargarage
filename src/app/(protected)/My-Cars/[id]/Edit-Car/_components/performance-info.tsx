@@ -14,8 +14,18 @@ import {
 import { Gauge } from "lucide-react";
 import { EngineType, TransmissionType } from "@prisma/client";
 import { useMyCar } from "~/app/context/my-car-context";
+import type { EditCarInput } from "~/utils/types";
 
-const PerformanceInfo = () => {
+export default function PerformanceInfo({
+  formData,
+  updateField,
+}: {
+  formData: EditCarInput;
+  updateField: (
+    field: keyof EditCarInput,
+    value: string | number | Date | undefined,
+  ) => void;
+}) {
   const { myCar, isLoading } = useMyCar();
 
   if (isLoading || !myCar) {
@@ -37,14 +47,21 @@ const PerformanceInfo = () => {
             <Input
               id="engine"
               name="engine"
-              placeholder={myCar.engine ?? "Not Provided"}
+              value={formData.engine}
+              onChange={(e) => updateField("engine", e.target.value)}
+              placeholder={"Enter Engine"}
             />
           </div>
           <div className="space-y-2">
             <Label htmlFor="engineType">Engine Type *</Label>
-            <Select name="engineType" required>
+            <Select
+              required
+              name="engineType"
+              value={formData.engineType ?? ""}
+              onValueChange={(value) => updateField("engineType", value)}
+            >
               <SelectTrigger className="w-full">
-                <SelectValue placeholder={myCar.engineType} />
+                <SelectValue placeholder={"Engine Type"} />
               </SelectTrigger>
               <SelectContent>
                 {Object.values(EngineType).map((type) => (
@@ -57,7 +74,11 @@ const PerformanceInfo = () => {
           </div>
           <div className="space-y-2">
             <Label htmlFor="transmissionType">Transmission *</Label>
-            <Select name="transmissionType" required>
+            <Select
+              name="transmissionType"
+              value={formData.transmissionType ?? ""}
+              onValueChange={(value) => updateField("transmissionType", value)}
+            >
               <SelectTrigger className="w-full">
                 <SelectValue placeholder={myCar.transmissionType} />
               </SelectTrigger>
@@ -73,31 +94,36 @@ const PerformanceInfo = () => {
           <div className="space-y-2">
             <Label htmlFor="hp">Horsepower</Label>
             <Input
+              onChange={(e) => updateField("hp", e.target.value)}
               id="hp"
               name="hp"
               type="number"
-              placeholder={myCar.hp.toString()}
+              value={formData.hp}
+              placeholder={"Enter HP"}
               min="0"
             />
           </div>
           <div className="space-y-2">
             <Label htmlFor="mileage">Current Mileage *</Label>
             <Input
+              onChange={(e) => updateField("mileage", e.target.value)}
               id="mileage"
               name="mileage"
               type="number"
-              placeholder={myCar.mileage.toString()}
+              value={formData.mileage}
+              placeholder={"Enter Mileage"}
               min="0"
-              required
             />
           </div>
           <div className="space-y-2">
             <Label htmlFor="milesBoughtAt">Miles at Purchase</Label>
             <Input
+              onChange={(e) => updateField("milesBoughtAt", e.target.value)}
               id="milesBoughtAt"
               name="milesBoughtAt"
               type="number"
-              placeholder={myCar.milesBoughtAt.toString()}
+              value={formData.milesBoughtAt}
+              placeholder={"Enter miles bought at"}
               min="0"
             />
           </div>
@@ -105,6 +131,4 @@ const PerformanceInfo = () => {
       </CardContent>
     </Card>
   );
-};
-
-export default PerformanceInfo;
+}
