@@ -1,9 +1,9 @@
-import BackButton from "./back-button";
+import DashboardButton from "./dashboard-button";
 import MyCarInfo from "./my-car-info";
 import CarImage from "./car-image";
 import MyCarDesc from "./my-car-desc";
 import { useMyCar } from "~/app/context/my-car-context";
-import { useUser } from "@clerk/nextjs"
+import { useUser } from "@clerk/nextjs";
 
 export default function MyCarPageContent() {
   const { user, isLoaded } = useUser();
@@ -12,7 +12,7 @@ export default function MyCarPageContent() {
   if (isLoaded && myCar?.ownerId !== user?.id && !isLoading) {
     return (
       <section className="flex h-screen w-full max-w-screen-2xl flex-col items-center justify-center gap-4 px-2 sm:px-4 md:mx-auto lg:px-16">
-        <BackButton />
+        <DashboardButton />
         <div className="flex flex-col items-center justify-center">
           <h1 className="text-2xl font-bold">
             The car you are looking for does not exist
@@ -27,7 +27,7 @@ export default function MyCarPageContent() {
 
   return (
     <section className="flex w-full max-w-screen-2xl flex-col gap-4 px-2 sm:px-4 md:mx-auto lg:px-16">
-      <BackButton />
+      <DashboardButton />
 
       {/* HERO SECTION */}
 

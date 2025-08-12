@@ -62,10 +62,21 @@ model MyCar {
     ownerId String
     owner   User   @relation(fields: [ownerId], references: [clerkId], onDelete: Cascade)
 
+    images   CarImage[]
+
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
     @@map("my_cars")
+}
+
+
+model CarImage {
+  id     Int    @id @default(autoincrement())
+  url    String
+  carId  Int
+  car    MyCar  @relation(fields: [carId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
 }
 
 model ProjectCar {
