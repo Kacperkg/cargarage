@@ -77,6 +77,7 @@ export default function EditCarFormContent({ myCar }: { myCar: MyCar }) {
     e.preventDefault();
     try {
       toast.message("Upading...");
+      console.log("these are the images being uploaded", images.length);
       if (images.length > 0) {
         await startUpload(
           images.map((img) => img.file),

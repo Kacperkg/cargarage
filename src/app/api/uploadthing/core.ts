@@ -34,7 +34,7 @@ export const ourFileRouter = {
           },
         });
         return image;
-      } catch (err) {
+      } catch (error) {
         throw new Error("Failed to save image to database");
       }
     }),

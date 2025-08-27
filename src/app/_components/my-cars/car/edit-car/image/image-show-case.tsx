@@ -40,9 +40,15 @@ const ImageShowcase = ({
     return <div>Loading</div>;
   }
 
+  const utils = api.useUtils();
+
   // Delete Car Image, change to client removce and then implement permament remove in saving /// TODO
   const { mutate: deleteCarImage, isPending } =
-    api.deleteCarImage.deleteImage.useMutation();
+    api.deleteCarImage.deleteImage.useMutation({
+      onSuccess: async () => {
+        await utils.getMyCars.getMyCarById.invalidate();
+      },
+    });
 
   const totalImages = myCar.images.length + clientImages.length;
   const hasNoImages = myCar.images.length < 1 && clientImages.length < 1;

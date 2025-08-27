@@ -28,34 +28,28 @@ A comprehensive web application for car enthusiasts to track their vehicles, man
 - **State Management**: React Context API
 - **TypeScript**: Full type safety
 
-# Project Todo List
-
 # REMINDER FOR ME
 
-- [ ] Make sure when making forms its said thing OR NULL not empty string
-- [ ] Improve design of edit car page but not top priority
-- [ ] Make sure only the owner can edit
 - [ ] input validate everywhere basically double check and implement where required
 - [ ] folder rename to lower case for easier navigation via link and then change bread crumbs to load and while loading just capitalize it
-- [ ] Image show case scaling issue on resize or on button press?
 
 - [ ] Break down code even further
 - [ ] Tidy up code
 - [ ] Change to next image rather than img
-- [ ] Implement client side deletion for image
 
-## Core Features Left to do
+# BREAKDOWN PAGE BY PAGE
 
-- [ ] Add form validation
-- [ ] Implement error handling
-- [ ] Set up testing framework
-- [ ] Add documentation
-- [ ] Add Breadcrumbs properly
+## My Car
 
-- [ ] Reformat code into smaller componments and make it more maintainable
+### Car
 
-## Potential Improvements
+- [ ] Able to select image and for it to go into bigger view/main view
+- [ ] pop up window to update miles
+- [ ] pop up window to add log service
 
-- [ ] Add dark mode support
-- [ ] Improve accessibility features
-- [ ] Implement rate limiting
+### Edit
+
+- [ ] add remove to client side and then delete from db on save edit
+- [ ] improve design as it looks lackluster
+- [ ] give error message for user in case img too big etc
+- [ ] Make sure only the owner can edit
