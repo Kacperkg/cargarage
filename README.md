@@ -40,6 +40,9 @@ A comprehensive web application for car enthusiasts to track their vehicles, man
 - [ ] Image show case scaling issue on resize or on button press?
 
 - [ ] Break down code even further
+- [ ] Tidy up code
+- [ ] Change to next image rather than img
+- [ ]
 
 ## Core Features Left to do
 

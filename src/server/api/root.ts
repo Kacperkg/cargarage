@@ -7,7 +7,7 @@ import { getMyCarsRouter } from "./routers/getMyCars";
 import { createMyCarsRouter } from "./routers/createMyCars";
 import { deleteDreamCarRouter } from "./routers/deleteDreamCar";
 import { sellMyCarRouter } from "./routers/sellMyCar";
-
+import { deleteCarImageRouter } from "./routers/deleteImage";
 
 /**
  * This is the primary router for your server.
@@ -23,6 +23,7 @@ export const appRouter = createTRPCRouter({
   createMyCar: createMyCarsRouter,
   deleteDreamCar: deleteDreamCarRouter,
   sellMyCar: sellMyCarRouter,
+  deleteCarImage: deleteCarImageRouter,
 });
 
 // export type definition of API

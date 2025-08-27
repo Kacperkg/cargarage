@@ -1,3 +1,5 @@
+import type { EditCarInput, MyCar, ClientEditCarInput } from "~/utils/types";
+
 export enum FormReducerActionKind {
   UPDATE_FIELD = "UPDATE_FIELD",
   RESET_FORM = "RESET_FORM",
@@ -26,12 +28,10 @@ export type FormReducerAction =
   | ResetFormAction
   | LoadInitialDataAction;
 
-import type { EditCarInput, MyCar } from "~/utils/types";
-
 function formReducer(
-  state: EditCarInput,
+  state: ClientEditCarInput,
   action: FormReducerAction,
-): EditCarInput {
+): ClientEditCarInput {
   switch (action.type) {
     case FormReducerActionKind.UPDATE_FIELD:
       return {
@@ -39,7 +39,7 @@ function formReducer(
         [action.payload.field]: action.payload.value,
       };
     case FormReducerActionKind.RESET_FORM:
-      return { id: state.id } as EditCarInput;
+      return { id: state.id } as ClientEditCarInput;
     case FormReducerActionKind.LOAD_INITIAL_DATA:
       return {
         id: action.payload.id,
@@ -58,6 +58,8 @@ function formReducer(
         licensePlate: action.payload.licensePlate ?? undefined,
         engine: action.payload.engine ?? undefined,
         status: action.payload.status,
+        clientImages: [],
+        existingImages: action.payload.images,
       };
     default:
       return state;

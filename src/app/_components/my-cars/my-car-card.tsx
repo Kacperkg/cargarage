@@ -1,6 +1,6 @@
 "use client";
 
-import { Palette, Car, Gauge, Calendar, Settings } from "lucide-react";
+import { Palette, Gauge, Calendar, Settings } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import {
   Card,
@@ -29,7 +29,7 @@ export default function MyCarsCard() {
     return myCars.map((car) => (
       <Card key={car.id} className="bg-bg2 flex flex-col gap-2">
         <CardHeader className="flex aspect-video items-center justify-center border-b-2">
-          <Car className="text-accent h-10 w-10" />
+          <img src={car.images[0]?.url} alt="Car" />
         </CardHeader>
         <CardContent>
           <ul className="flex flex-col gap-2">

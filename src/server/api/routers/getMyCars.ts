@@ -14,6 +14,9 @@ export const getMyCarsRouter = createTRPCRouter({
         where: {
           ownerId: userId,
         },
+        include: {
+          images: true,
+        },
       });
 
       if (!myCars) {
@@ -120,6 +123,9 @@ export const getMyCarsRouter = createTRPCRouter({
           where: {
             id: parseInt(input),
             ownerId: userId,
+          },
+          include: {
+            images: true,
           },
         });
 

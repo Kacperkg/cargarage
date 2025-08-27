@@ -1,5 +1,5 @@
 import React from "react";
-import ImageShowcase from "../image-show-case";
+import ImageShowcase from "../image/image-show-case";
 
 import FormAction from "../form-action/form-action";
 

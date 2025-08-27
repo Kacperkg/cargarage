@@ -66,6 +66,7 @@ export interface MyCar {
   createdAt: Date;
   updatedAt: Date;
   ownerId: string;
+  images: { id: number; url: string; carId: number }[];
 }
 
 export type MyCarFormData = {
@@ -184,4 +185,42 @@ export const editCarSchema = z.object({
   status: z.nativeEnum(CarStatus),
 });
 
+export const clientEditCarSchema = editCarSchema.extend({
+  clientImages: z
+    .array(
+      z.object({
+        id: z.string(),
+        file: z.instanceof(File),
+        preview: z.string(),
+      }),
+    )
+    .default([]),
+  existingImages: z
+    .array(
+      z.object({
+        id: z.number(),
+        url: z.string(),
+      }),
+    )
+    .default([]),
+});
+
 export type EditCarInput = z.infer<typeof editCarSchema>;
+export type ClientEditCarInput = z.infer<typeof clientEditCarSchema>;
+
+export interface TempImage {
+  id: string;
+  file: File;
+  preview: string;
+}
+
+export const MAX_IMAGES = 6;
+
+export interface ImageShowcaseProps {
+  clientImages: TempImage[];
+  onAddImages: (files: FileList, currentCount: number) => void;
+  onRemoveClientImage: (id: string) => void;
+  onUpdateClientImage: (id: string, updates: Partial<TempImage>) => void;
+  clientFileInputRef: React.RefObject<HTMLInputElement | null>;
+  onTriggerUpload: () => void;
+}

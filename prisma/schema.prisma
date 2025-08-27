@@ -76,7 +76,6 @@ model CarImage {
   url    String
   carId  Int
   car    MyCar  @relation(fields: [carId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
 }
 
 model ProjectCar {

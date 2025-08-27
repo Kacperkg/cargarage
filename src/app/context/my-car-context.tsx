@@ -20,8 +20,12 @@ export function MyCarProvider({
 }) {
   const { data: myCar, isLoading } = api.getMyCars.getMyCarById.useQuery(carId);
 
+  if (!myCar) {
+    return <></>;
+  }
+
   return (
-    <MyCarContext.Provider value={{ myCar: myCar!, isLoading }}>
+    <MyCarContext.Provider value={{ myCar: myCar, isLoading }}>
       {children}
     </MyCarContext.Provider>
   );
