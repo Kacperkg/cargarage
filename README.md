@@ -42,7 +42,7 @@ A comprehensive web application for car enthusiasts to track their vehicles, man
 - [ ] Break down code even further
 - [ ] Tidy up code
 - [ ] Change to next image rather than img
-- [ ]
+- [ ] Implement client side deletion for image
 
 ## Core Features Left to do
 
