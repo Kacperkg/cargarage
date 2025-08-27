@@ -53,3 +53,4 @@ A comprehensive web application for car enthusiasts to track their vehicles, man
 - [ ] improve design as it looks lackluster
 - [ ] give error message for user in case img too big etc
 - [ ] Make sure only the owner can edit
+- [ ] handle deletion on uploadthing as well
