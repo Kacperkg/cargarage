@@ -12,17 +12,20 @@ export default function CarImage() {
 
   return (
     <div className="my-4 flex flex-col gap-4 lg:flex-row">
-      <div className="bg-muted/50 flex aspect-video basis-full items-center justify-center rounded-lg border-2 border-dashed">
-        {imgCount > 0 ? (
+      {imgCount > 0 ? (
+        <div className="flex aspect-video basis-full items-center justify-center rounded-lg">
           <img
             src={myCar.images[0]?.url}
             alt=""
             className="w-full rounded-lg"
           />
-        ) : (
+        </div>
+      ) : (
+        <div className="bg-muted/50 flex aspect-video basis-full items-center justify-center rounded-lg border-2 border-dashed">
           <Car className="text-muted-foreground mx-auto mb-4 h-24 w-24" />
-        )}
-      </div>
+        </div>
+      )}
+
       <div className="flex basis-full flex-row justify-between gap-2 lg:basis-1/5 lg:flex-col">
         {myCar.images.length < 2
           ? Array.from({ length: 5 }).map((_, i) => (
